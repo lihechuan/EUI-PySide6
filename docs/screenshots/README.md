@@ -6,6 +6,10 @@
 
 Explore the Gallery interface, themes, and component examples.
 
+15 秒交互演示：[中文](1.3.2/gallery-demo-zh.gif) · [English](1.3.2/gallery-demo-en.gif)，展示表格编辑、明暗主题切换与 QML 源码查看。演示和截图沿用原 EUI Gallery，展示两者共用的 QML 界面。
+
+15-second interaction demos: use the links above to see table editing, light and dark themes, and QML source previews. The demos and screenshots come from the original EUI Gallery and illustrate the shared QML interface.
+
 | 组件 / Component | 截图 / Screenshots | 展示功能 / Feature |
 | --- | --- | --- |
 | 完整首页 / Complete home page | [中文](1.3.2/home-zh.png) · [English](1.3.2/home-en.png) | 当前组件目录、精选组件和全部分类 / Current catalog, featured components, and all categories |

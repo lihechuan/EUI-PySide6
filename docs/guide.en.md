@@ -76,7 +76,7 @@ def main():
     os.environ.setdefault("QT_QUICK_CONTROLS_STYLE", "Basic")
     app = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
-    initialize(engine, language="zh", dark=False)
+    initialize(engine, language="en", dark=False)
     engine.load(QUrl.fromLocalFile(str(Path(__file__).resolve().with_name("Main.qml"))))
     if not engine.rootObjects():
         return 1
@@ -99,7 +99,7 @@ EApplicationWindow {
     width: 640
     height: 420
     visible: true
-    title: "我的 EUI 应用"
+    title: "My EUI Application"
 
     Column {
         spacing: 16
@@ -108,19 +108,19 @@ EApplicationWindow {
         EText {
             id: greeting
 
-            text: "欢迎使用 EUI"
+            text: "Welcome to EUI"
         }
         EInput {
             id: nameInput
 
             width: 260
-            placeholderText: "请输入姓名"
+            placeholderText: "Enter your name"
         }
         EButton {
-            text: "打招呼"
+            text: "Say hello"
             styleType: EStyle.Primary
 
-            onClicked: greeting.text = "你好，" + (nameInput.text || "访客")
+            onClicked: greeting.text = "Hello, " + (nameInput.text || "Guest")
         }
     }
 }
@@ -489,7 +489,7 @@ Recommended workflow:
 
 Gallery checks for new versions at startup. Open the update panel from the top bar to view version information. When an update is available, select **Update now** to download and install it while following progress in the panel. Gallery restarts after updating and retains your language, theme, and user settings. Select **Retry check** after a network error.
 
-Updating requires write access to the installation directory and sufficient free space. If an in-place update is unavailable, download a package for your system and architecture from [GitHub Releases](https://github.com/lihechuan/EUI/releases).
+Updating requires write access to the installation directory and sufficient free space. If an in-place update is unavailable, download a package for your system and architecture from [GitHub Releases](https://github.com/lihechuan/EUI-PySide6/releases).
 
 ## 6. Troubleshooting
 

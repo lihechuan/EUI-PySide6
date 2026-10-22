@@ -533,7 +533,7 @@ Gallery 左侧提供分类导航和名称搜索；`Ctrl+K` 聚焦搜索框。右
 
 Gallery 启动时检查新版本。点击顶部的更新按钮查看版本信息；有新版时点击“立即更新”，可在面板中查看下载和安装进度。更新完成后 Gallery 自动重启，语言、主题和用户设置保留。网络连接失败时可点击“重新检查”。
 
-更新需要安装目录的写入权限和足够的可用空间。无法直接更新时，可从 [GitHub Releases](https://github.com/lihechuan/EUI/releases) 下载适合当前系统和架构的版本。
+更新需要安装目录的写入权限和足够的可用空间。无法直接更新时，可从 [GitHub Releases](https://github.com/lihechuan/EUI-PySide6/releases) 下载适合当前系统和架构的版本。
 
 ## 6. 常见问题
 

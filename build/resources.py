@@ -9,7 +9,7 @@ import PySide6
 
 def main():
     root = Path(__file__).resolve().parents[1]
-    tool = Path(PySide6.__file__).parent / ("rcc.exe" if sys.platform == "win32" else "rcc")
+    tool = Path(PySide6.__file__).parent / ("rcc.exe" if sys.platform == "win32" else "Qt/libexec/rcc")
     for source in (root / "source/resources.qrc", root / "example/example.qrc"):
         target = source.with_suffix(".rcc")
         temporary = target.with_suffix(f".{os.getpid()}.tmp")

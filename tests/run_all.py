@@ -43,11 +43,17 @@ def main():
         paths = [path for path in paths if path.stem in failed]
     (ROOT / "test-results").mkdir(exist_ok=True)
     results = []
+    performance_paths = [path for path in paths if path.stem == "tst_gallery_runtime"]
+    paths = [path for path in paths if path not in performance_paths]
     with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, args.jobs)) as pool:
         for future in concurrent.futures.as_completed([pool.submit(run, path) for path in paths]):
             result = future.result()
             results.append(result)
             print(f"{'PASS' if result['ok'] else 'FAIL'} {result['suite']}: {result['passed']} passed, {result['failed']} failed, {result['skipped']} skipped", flush=True)
+    for path in performance_paths:
+        result = run(path)
+        results.append(result)
+        print(f"{'PASS' if result['ok'] else 'FAIL'} {result['suite']}: {result['passed']} passed, {result['failed']} failed, {result['skipped']} skipped", flush=True)
     if args.failed:
         updated = {item["suite"]: item for item in previous}
         updated.update({item["suite"]: item for item in results})

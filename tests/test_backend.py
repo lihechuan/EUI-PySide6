@@ -14,6 +14,7 @@ from PySide6.QtQml import QQmlComponent, QQmlEngine
 
 from eui import initialize
 from eui.component.EFileUploader import FileUploader
+from eui.config.EDefaultConfig import DefaultConfig
 from eui.style.palettes.EPaletteManager import PaletteManager
 from eui.utils.ECodeTools import CodeTools
 from eui.utils.ETextDocument import TextDocument
@@ -31,6 +32,15 @@ class BackendTests(unittest.TestCase):
         first, second = PaletteManager(), PaletteManager()
         for name in ("BasePalette", "StatePalette", "ThemePalette"):
             self.assertIs(type(getattr(first, name)), type(getattr(second, name)))
+
+    def test_constant_font_properties_do_not_repeat_system_font_queries(self):
+        from PySide6.QtGui import QFontDatabase
+        with patch.object(QFontDatabase, "families", wraps=QFontDatabase.families) as families:
+            config = DefaultConfig()
+            expected = (config.primaryFontFamily, config.secondaryFontFamily)
+            for _ in range(100):
+                self.assertEqual((config.primaryFontFamily, config.secondaryFontFamily), expected)
+            self.assertEqual(families.call_count, 1)
 
     def test_services_keep_python_state_after_garbage_collection(self):
         engine = QQmlEngine()

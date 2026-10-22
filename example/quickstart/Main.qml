@@ -28,8 +28,8 @@ EApplicationWindow {
             }
             EButton {
                 objectName: "addOneButton"
-                text: window.english ? "Add one" : "加一"
                 styleType: EStyle.Primary
+                text: window.english ? "Add one" : "加一"
 
                 onClicked: {
                     window.clickCount += 1

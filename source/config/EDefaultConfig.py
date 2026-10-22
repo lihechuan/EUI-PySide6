@@ -4,8 +4,14 @@ from PySide6.QtGui import QFontDatabase
 class DefaultConfig(QObject):
     font = Property(str, lambda self: "EIcons", constant=True)
     fontLib = Property(str, lambda self: "qrc:/qt/qml/EUI/font/EFont.ttf", constant=True)
-    primaryFontFamily = Property(str, lambda self: next((f for f in ("Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI") if f in QFontDatabase.families()), QFontDatabase.systemFont(QFontDatabase.GeneralFont).family()), constant=True)
-    secondaryFontFamily = Property(str, lambda self: next((f for f in ("Consolas", "Menlo") if f in QFontDatabase.families()), QFontDatabase.systemFont(QFontDatabase.FixedFont).family()), constant=True)
+    primaryFontFamily = Property(str, lambda self: self._primary_font, constant=True)
+    secondaryFontFamily = Property(str, lambda self: self._secondary_font, constant=True)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        families = set(QFontDatabase.families())
+        self._primary_font = next((family for family in ("Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI") if family in families), QFontDatabase.systemFont(QFontDatabase.GeneralFont).family())
+        self._secondary_font = next((family for family in ("Consolas", "Menlo") if family in families), QFontDatabase.systemFont(QFontDatabase.FixedFont).family())
 
     @Slot(int, result=int)
     def iconSize(self, size):

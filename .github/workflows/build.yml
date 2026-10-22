@@ -71,7 +71,7 @@ jobs:
       - name: Rendering regression checks
         run: python tests/run_all.py --match popup_spinbox_rendering --jobs 1
       - name: QML tests
-        run: python tests/run_all.py --jobs 1
+        run: python tests/run_all.py --jobs 2
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

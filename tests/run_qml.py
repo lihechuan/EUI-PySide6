@@ -46,6 +46,19 @@ class Setup(QObject):
         controller = self.engine.incubationController() if item else None
         return controller.incubatingObjectCount() if controller else 0
 
+    @Slot(QQuickItem, int, result=bool)
+    def seekAnimation(self, item, milliseconds):
+        controller = self.services["EAnimation"]._controllers.get(id(item))
+        if controller is None:
+            return False
+        animation = controller.animation
+        if milliseconds < animation.duration():
+            animation.pause()
+        else:
+            animation.resume()
+        animation.setCurrentTime(milliseconds)
+        return True
+
 
 if __name__ == "__main__":
     QtWebEngineQuick.initialize()

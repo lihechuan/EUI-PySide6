@@ -25,7 +25,7 @@ TestCase {
         const ratio = before.width / host.width
         compare(before.red(Math.floor(80 * ratio), Math.floor(90 * ratio)), 255)
         verify(EAnimation.play(item, data.effect, {duration: 200, distance: 24, easing: Easing.Linear}))
-        wait(60)
+        verify(galleryTest.seekAnimation(item, 60))
         const during = imageOf(host)
         let changed = 0
         for (let y = 25; y < 110; ++y) {
@@ -37,7 +37,7 @@ TestCase {
             }
         }
         verify(changed > 20, data.effect + " must visibly change pixels")
-        wait(170)
+        verify(galleryTest.seekAnimation(item, 200))
         const after = imageOf(host)
         const exiting = data.effect.indexOf("Out") >= 0
         compare(after.blue(Math.floor(80 * ratio), Math.floor(50 * ratio)), exiting ? 255 : 232)

@@ -194,7 +194,7 @@ TextField {
 
         height: control.height
         anchors.left: control.left
-        width: prependLoader.active ? prependLoader.width + 16 : 0
+        width: prependLoader.active ? Math.ceil(prependLoader.width) + 16 : 0
 
         Loader {
             id: prependLoader
@@ -212,7 +212,7 @@ TextField {
 
         height: control.height
         anchors.right: control.right
-        width: appendLoader.active ? appendLoader.width + 16 : 0
+        width: appendLoader.active ? Math.ceil(appendLoader.width) + 16 : 0
 
         Loader {
             id: appendLoader

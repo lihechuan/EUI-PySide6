@@ -7,7 +7,7 @@
 | 目标 | 阅读顺序 | 成功标准 |
 | --- | --- | --- |
 | 体验现有组件 | 第 1 节 → 第 2.1 节 | Gallery 打开，可交互操作和查看源码 |
-| 创建自己的应用 | 第 1 节 → 第 2.2 节 → 第 3 节 | 按钮根据输入内容显示问候语 |
+| 创建自己的应用 | 第 1 节 → 第 2.2 节 → 第 3 节 | 点击按钮增加计数并显示消息 |
 | 接入已有项目 | 第 1 节 → 第 2.2 节 → 第 3.3 节 | Python/QML 窗口可以使用 EUI |
 
 ## 1. 环境准备
@@ -96,31 +96,41 @@ import EUI 1.0
 import QtQuick
 
 EApplicationWindow {
+    id: window
+
+    property int clickCount: 0
+
+    readonly property bool english: ELocale.language === "en"
+
     width: 640
     height: 420
     visible: true
-    title: "我的 EUI 应用"
+    title: "EUI Demo"
 
-    Column {
-        spacing: 16
-        anchors.centerIn: parent
+    EApp {
+        id: app
 
-        EText {
-            id: greeting
+        anchors.fill: parent
 
-            text: "欢迎使用 EUI"
-        }
-        EInput {
-            id: nameInput
+        Column {
+            x: 24
+            y: 24
+            spacing: 16
 
-            width: 260
-            placeholderText: "请输入姓名"
-        }
-        EButton {
-            text: "打招呼"
-            styleType: EStyle.Primary
+            EText {
+                text: (window.english ? "Clicks: " : "点击次数：") + window.clickCount
+            }
+            EButton {
+                objectName: "addOneButton"
+                text: window.english ? "Add one" : "加一"
+                styleType: EStyle.Primary
 
-            onClicked: greeting.text = "你好，" + (nameInput.text || "访客")
+                onClicked: {
+                    window.clickCount += 1
+                    app.message.open(window.english ? "Clicked " + window.clickCount + " times"
+                        : "已点击 " + window.clickCount + " 次")
+                }
+            }
         }
     }
 }
@@ -128,7 +138,7 @@ EApplicationWindow {
 
 ### 3.2 运行并检查
 
-在该目录运行 `python main.py`。窗口打开后输入姓名，点击按钮可更新问候语。编辑 QML 后关闭并重新运行即可。示例直接从磁盘加载 QML，无需编译资源；业务文字可以使用应用自己的翻译。
+在该目录运行 `python main.py`，窗口显示“点击次数：0”。点击“加一”后显示“点击次数：1”和提示消息，再次点击显示“点击次数：2”。编辑 QML 后关闭并重新运行即可。示例直接从磁盘加载 QML，无需编译资源；业务文字可以使用应用自己的翻译。
 
 ### 3.3 接入已有项目
 

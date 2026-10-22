@@ -239,8 +239,8 @@ TestCase {
         EInput {
             y: 180
             width: 320
-            appendComponent: Component { EText { text: ".com" } }
-            prependComponent: Component { EText { text: "https://" } }
+            appendComponent: Component { EText { text: ".com"; width: implicitWidth + 0.25 } }
+            prependComponent: Component { EText { text: "https://"; width: implicitWidth + 0.25 } }
         }
     }
 }

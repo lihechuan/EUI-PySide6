@@ -2,31 +2,41 @@ import EUI 1.0
 import QtQuick
 
 EApplicationWindow {
+    id: window
+
+    property int clickCount: 0
+
+    readonly property bool english: ELocale.language === "en"
+
     width: 640
     height: 420
     visible: true
-    title: "我的 EUI 应用"
+    title: "EUI Demo"
 
-    Column {
-        spacing: 16
-        anchors.centerIn: parent
+    EApp {
+        id: app
 
-        EText {
-            id: greeting
+        anchors.fill: parent
 
-            text: "欢迎使用 EUI"
-        }
-        EInput {
-            id: nameInput
+        Column {
+            x: 24
+            y: 24
+            spacing: 16
 
-            width: 260
-            placeholderText: "请输入姓名"
-        }
-        EButton {
-            text: "打招呼"
-            styleType: EStyle.Primary
+            EText {
+                text: (window.english ? "Clicks: " : "点击次数：") + window.clickCount
+            }
+            EButton {
+                objectName: "addOneButton"
+                text: window.english ? "Add one" : "加一"
+                styleType: EStyle.Primary
 
-            onClicked: greeting.text = "你好，" + (nameInput.text || "访客")
+                onClicked: {
+                    window.clickCount += 1
+                    app.message.open(window.english ? "Clicked " + window.clickCount + " times"
+                        : "已点击 " + window.clickCount + " 次")
+                }
+            }
         }
     }
 }

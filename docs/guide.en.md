@@ -7,7 +7,7 @@ Use `import EUI 1.0` in QML. Initialize the Python services before loading a win
 | Goal | Follow in order | Success looks like |
 | --- | --- | --- |
 | Try existing components | Section 1 → Section 2.1 | Gallery opens with interactive examples and source |
-| Create your application | Section 1 → Section 2.2 → Section 3 | The button displays a greeting using the input text |
+| Create your application | Section 1 → Section 2.2 → Section 3 | Clicking a button increases a counter and shows a message |
 | Integrate an existing project | Section 1 → Section 2.2 → Section 3.3 | Your Python/QML window can use EUI |
 
 ## 1. Prerequisites
@@ -96,31 +96,41 @@ import EUI 1.0
 import QtQuick
 
 EApplicationWindow {
+    id: window
+
+    property int clickCount: 0
+
+    readonly property bool english: ELocale.language === "en"
+
     width: 640
     height: 420
     visible: true
-    title: "My EUI Application"
+    title: "EUI Demo"
 
-    Column {
-        spacing: 16
-        anchors.centerIn: parent
+    EApp {
+        id: app
 
-        EText {
-            id: greeting
+        anchors.fill: parent
 
-            text: "Welcome to EUI"
-        }
-        EInput {
-            id: nameInput
+        Column {
+            x: 24
+            y: 24
+            spacing: 16
 
-            width: 260
-            placeholderText: "Enter your name"
-        }
-        EButton {
-            text: "Say hello"
-            styleType: EStyle.Primary
+            EText {
+                text: (window.english ? "Clicks: " : "点击次数：") + window.clickCount
+            }
+            EButton {
+                objectName: "addOneButton"
+                text: window.english ? "Add one" : "加一"
+                styleType: EStyle.Primary
 
-            onClicked: greeting.text = "Hello, " + (nameInput.text || "Guest")
+                onClicked: {
+                    window.clickCount += 1
+                    app.message.open(window.english ? "Clicked " + window.clickCount + " times"
+                        : "已点击 " + window.clickCount + " 次")
+                }
+            }
         }
     }
 }
@@ -128,7 +138,7 @@ EApplicationWindow {
 
 ### 3.2 Run and check the result
 
-Run `python main.py` from that directory. The window opens; enter a name and click the button to update the greeting. Close and rerun after editing QML. This example loads QML directly from disk and needs no resource compilation. Your business labels can use your own translations.
+Run `python main.py` from that directory. The window displays **Clicks: 0**. Click **Add one** to see **Clicks: 1** and a message; click again to see **Clicks: 2**. Close and rerun after editing QML. This example loads QML directly from disk and needs no resource compilation. Your business labels can use your own translations.
 
 ### 3.3 Integrate an existing project
 

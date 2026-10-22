@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">EUI 折角标志</title>
+  <desc id="desc">两侧折带围合成开放的结构，内部向上斜伸的短横梁形成独特轮廓，三个蓝色平面表达折叠方向。</desc>
+  <path fill="#255BD8" d="M16 24 46 8V58L68 45L80 52L46 72V81L64 92L88 78V8L112 22V90L64 118L16 90Z"/>
+  <path fill="#3A95F0" d="M16 24 46 8V58L68 45L80 52L46 72V81L64 92V118L16 90Z"/>
+  <path fill="#69C9FF" d="M16 24 46 8V30L16 46ZM46 58 68 45 80 52 46 72Z"/>
+</svg>

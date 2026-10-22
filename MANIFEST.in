@@ -1,0 +1,8 @@
+include LICENSE THIRD_PARTY_NOTICES.md README.md
+include build/resources.py
+recursive-include assets *
+recursive-include source *.py *.qml *.js *.json *.svg *.ttf *.qsb *.html *.qrc *.rcc
+recursive-include source/thirdparty *
+recursive-include source/qml/EUI/font/icons LICENSE README.md
+recursive-include example *.py *.qml *.js *.json *.svg *.mesh *.png *.jpg *.qrc *.rcc
+recursive-include example/quick3d *

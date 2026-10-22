@@ -1,0 +1,816 @@
+{
+    "line": {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
+        "yAxis": {"type": "value"},
+        "dataZoom": [{"type": "inside"}, {"type": "slider", "height": 20, "bottom": 12}],
+        "series": [
+            {"name": "Mobile", "type": "line", "smooth": true, "data": [120, 182, 191, 234, 290, 330, 310]},
+            {"name": "Desktop", "type": "line", "smooth": true, "data": [90, 132, 151, 184, 240, 270, 290]}
+        ]
+    },
+    "bar": {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
+        "yAxis": {"type": "value"},
+        "dataZoom": [{"type": "inside"}, {"type": "slider", "height": 20, "bottom": 12}],
+        "series": [
+            {"name": "Mobile", "type": "bar", "barMaxWidth": 28, "data": [120, 182, 191, 234, 290, 330, 310]},
+            {"name": "Desktop", "type": "bar", "barMaxWidth": 28, "data": [90, 132, 151, 184, 240, 270, 290]}
+        ]
+    },
+    "doughnut": {
+        "tooltip": {"trigger": "item"},
+        "legend": {"bottom": 12},
+        "series": [
+            {
+                "type": "pie",
+                "radius": ["42%", "68%"],
+                "center": ["50%", "46%"],
+                "label": {"show": true},
+                "data": [
+                    {"value": 1048, "name": "Search"},
+                    {"value": 735, "name": "Direct"},
+                    {"value": 580, "name": "Referral"},
+                    {"value": 484, "name": "Social"}
+                ]
+            }
+        ]
+    },
+    "scatter": {
+        "tooltip": {"trigger": "item"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "value"},
+        "yAxis": {"type": "value"},
+        "dataZoom": [{"type": "inside"}, {"type": "slider", "height": 20, "bottom": 12}],
+        "series": [
+            {
+                "name": "Mobile",
+                "type": "scatter",
+                "symbolSize": 14,
+                "data": [[10, 12], [18, 24], [26, 19], [34, 42], [42, 36], [50, 58], [58, 52]]
+            },
+            {
+                "name": "Desktop",
+                "type": "scatter",
+                "symbolSize": 14,
+                "data": [[12, 20], [20, 14], [28, 31], [36, 28], [44, 49], [52, 42], [60, 64]]
+            }
+        ]
+    },
+    "area": {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
+        "yAxis": {"type": "value"},
+        "dataZoom": [{"type": "inside"}, {"type": "slider", "height": 20, "bottom": 12}],
+        "series": [
+            {
+                "name": "Mobile",
+                "type": "line",
+                "smooth": true,
+                "data": [120, 182, 191, 234, 290, 330, 310],
+                "areaStyle": {"opacity": 0.2}
+            },
+            {
+                "name": "Desktop",
+                "type": "line",
+                "smooth": true,
+                "data": [90, 132, 151, 184, 240, 270, 290],
+                "areaStyle": {"opacity": 0.2}
+            }
+        ]
+    },
+    "stackedLine": {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
+        "yAxis": {"type": "value"},
+        "dataZoom": [{"type": "inside"}, {"type": "slider", "height": 20, "bottom": 12}],
+        "series": [
+            {
+                "name": "Mobile",
+                "type": "line",
+                "smooth": true,
+                "data": [120, 182, 191, 234, 290, 330, 310],
+                "areaStyle": {"opacity": 0.2},
+                "stack": "total"
+            },
+            {
+                "name": "Desktop",
+                "type": "line",
+                "smooth": true,
+                "data": [90, 132, 151, 184, 240, 270, 290],
+                "areaStyle": {"opacity": 0.2},
+                "stack": "total"
+            }
+        ]
+    },
+    "stepLine": {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
+        "yAxis": {"type": "value"},
+        "dataZoom": [{"type": "inside"}, {"type": "slider", "height": 20, "bottom": 12}],
+        "series": [
+            {
+                "name": "Mobile",
+                "type": "line",
+                "smooth": false,
+                "data": [120, 182, 191, 234, 290, 330, 310],
+                "step": "middle"
+            },
+            {
+                "name": "Desktop",
+                "type": "line",
+                "smooth": false,
+                "data": [90, 132, 151, 184, 240, 270, 290],
+                "step": "middle"
+            }
+        ]
+    },
+    "horizontalBar": {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "value"},
+        "yAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
+        "series": [
+            {"name": "Mobile", "type": "bar", "barMaxWidth": 28, "data": [120, 182, 191, 234, 290, 330, 310]},
+            {"name": "Desktop", "type": "bar", "barMaxWidth": 28, "data": [90, 132, 151, 184, 240, 270, 290]}
+        ]
+    },
+    "stackedBar": {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
+        "yAxis": {"type": "value"},
+        "dataZoom": [{"type": "inside"}, {"type": "slider", "height": 20, "bottom": 12}],
+        "series": [
+            {
+                "name": "Mobile",
+                "type": "bar",
+                "barMaxWidth": 28,
+                "data": [120, 182, 191, 234, 290, 330, 310],
+                "stack": "total"
+            },
+            {
+                "name": "Desktop",
+                "type": "bar",
+                "barMaxWidth": 28,
+                "data": [90, 132, 151, 184, 240, 270, 290],
+                "stack": "total"
+            }
+        ]
+    },
+    "negativeBar": {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "value"},
+        "yAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
+        "series": [
+            {"name": "Mobile", "type": "bar", "barMaxWidth": 28, "data": [120, 182, 191, 234, 290, 330, 310]},
+            {"name": "Desktop", "type": "bar", "barMaxWidth": 28, "data": [-90, -132, -151, -184, -240, -270, -290]}
+        ]
+    },
+    "mixed": {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
+        "yAxis": [{"type": "value"}, {"type": "value", "max": 100}],
+        "dataZoom": [{"type": "inside"}, {"type": "slider", "height": 20, "bottom": 12}],
+        "series": [
+            {"name": "Mobile", "type": "bar", "barMaxWidth": 28, "data": [120, 182, 191, 234, 290, 330, 310]},
+            {
+                "name": "Desktop",
+                "type": "line",
+                "barMaxWidth": 28,
+                "data": [32, 48, 45, 60, 76, 90, 85],
+                "yAxisIndex": 1
+            }
+        ]
+    },
+    "pie": {
+        "tooltip": {"trigger": "item"},
+        "legend": {"bottom": 12},
+        "series": [
+            {
+                "type": "pie",
+                "radius": "65%",
+                "center": ["50%", "46%"],
+                "label": {"show": true},
+                "data": [
+                    {"value": 1048, "name": "Search"},
+                    {"value": 735, "name": "Direct"},
+                    {"value": 580, "name": "Referral"},
+                    {"value": 484, "name": "Social"}
+                ]
+            }
+        ]
+    },
+    "rose": {
+        "tooltip": {"trigger": "item"},
+        "legend": {"bottom": 12},
+        "series": [
+            {
+                "type": "pie",
+                "radius": ["20%", "68%"],
+                "center": ["50%", "46%"],
+                "label": {"show": true},
+                "data": [
+                    {"value": 1048, "name": "Search"},
+                    {"value": 735, "name": "Direct"},
+                    {"value": 580, "name": "Referral"},
+                    {"value": 484, "name": "Social"}
+                ],
+                "roseType": "area"
+            }
+        ]
+    },
+    "nestedPie": {
+        "tooltip": {"trigger": "item"},
+        "legend": {"bottom": 12},
+        "series": [
+            {
+                "type": "pie",
+                "radius": ["48%", "68%"],
+                "center": ["50%", "46%"],
+                "label": {"show": true},
+                "data": [
+                    {"value": 1048, "name": "Search"},
+                    {"value": 735, "name": "Direct"},
+                    {"value": 580, "name": "Referral"},
+                    {"value": 484, "name": "Social"}
+                ]
+            },
+            {
+                "type": "pie",
+                "radius": ["20%", "38%"],
+                "center": ["50%", "46%"],
+                "label": {"position": "inside"},
+                "data": [{"name": "Mobile", "value": 60}, {"name": "Desktop", "value": 40}]
+            }
+        ]
+    },
+    "bubble": {
+        "tooltip": {"trigger": "item"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "value"},
+        "yAxis": {"type": "value"},
+        "dataZoom": [{"type": "inside"}, {"type": "slider", "height": 20, "bottom": 12}],
+        "series": [
+            {
+                "name": "Mobile",
+                "type": "scatter",
+                "symbolSize": 14,
+                "data": [
+                    {"value": [10, 12], "symbolSize": 12},
+                    {"value": [18, 24], "symbolSize": 18},
+                    {"value": [26, 19], "symbolSize": 24},
+                    {"value": [34, 42], "symbolSize": 30},
+                    {"value": [42, 36], "symbolSize": 36},
+                    {"value": [50, 58], "symbolSize": 42},
+                    {"value": [58, 52], "symbolSize": 48}
+                ]
+            },
+            {
+                "name": "Desktop",
+                "type": "scatter",
+                "symbolSize": 14,
+                "data": [
+                    {"value": [12, 20], "symbolSize": 12},
+                    {"value": [20, 14], "symbolSize": 18},
+                    {"value": [28, 31], "symbolSize": 24},
+                    {"value": [36, 28], "symbolSize": 30},
+                    {"value": [44, 49], "symbolSize": 36},
+                    {"value": [52, 42], "symbolSize": 42},
+                    {"value": [60, 64], "symbolSize": 48}
+                ]
+            }
+        ]
+    },
+    "effectScatter": {
+        "tooltip": {"trigger": "item"},
+        "legend": {"top": 8, "data": ["Mobile", "Desktop"]},
+        "grid": {"left": 48, "right": 24, "top": 56, "bottom": 72},
+        "xAxis": {"type": "value"},
+        "yAxis": {"type": "value"},
+        "dataZoom": [{"type": "inside"}, {"type": "slider", "height": 20, "bottom": 12}],
+        "series": [
+            {
+                "name": "Mobile",
+                "type": "effectScatter",
+                "symbolSize": 14,
+                "data": [[10, 12], [18, 24], [26, 19], [34, 42], [42, 36], [50, 58], [58, 52]],
+                "rippleEffect": {"scale": 3, "brushType": "stroke"}
+            },
+            {
+                "name": "Desktop",
+                "type": "effectScatter",
+                "symbolSize": 14,
+                "data": [[12, 20], [20, 14], [28, 31], [36, 28], [44, 49], [52, 42], [60, 64]],
+                "rippleEffect": {"scale": 3, "brushType": "stroke"}
+            }
+        ]
+    },
+    "radar": {
+        "tooltip": {},
+        "legend": {"bottom": 0},
+        "radar": {
+            "radius": "65%",
+            "indicator": [
+                {"name": "Speed", "max": 100},
+                {"name": "Quality", "max": 100},
+                {"name": "Cost", "max": 100},
+                {"name": "Reliability", "max": 100},
+                {"name": "Coverage", "max": 100}
+            ]
+        },
+        "series": [
+            {
+                "type": "radar",
+                "areaStyle": {"opacity": 0.15},
+                "data": [{"name": "Mobile", "value": [90, 80, 60, 85, 75]}, {"name": "Desktop", "value": [70, 95, 80, 90, 60]}]
+            }
+        ]
+    },
+    "gauge": {
+        "tooltip": {},
+        "series": [
+            {
+                "type": "gauge",
+                "min": 0,
+                "max": 100,
+                "radius": "80%",
+                "detail": {"formatter": "{value}%"},
+                "data": [{"name": "Completion", "value": 72}]
+            }
+        ]
+    },
+    "progressGauge": {
+        "tooltip": {},
+        "series": [
+            {
+                "type": "gauge",
+                "min": 0,
+                "max": 100,
+                "radius": "80%",
+                "detail": {"formatter": "{value}%"},
+                "data": [{"name": "Completion", "value": 72}],
+                "startAngle": 90,
+                "endAngle": -270,
+                "progress": {"show": true, "roundCap": true},
+                "pointer": {"show": false},
+                "axisLine": {"lineStyle": {"width": 20}},
+                "axisTick": {"show": false},
+                "splitLine": {"show": false},
+                "axisLabel": {"show": false}
+            }
+        ]
+    },
+    "funnel": {
+        "tooltip": {"trigger": "item"},
+        "legend": {"bottom": 0},
+        "series": [
+            {
+                "type": "funnel",
+                "top": 20,
+                "bottom": 50,
+                "left": "15%",
+                "width": "70%",
+                "label": {"position": "inside"},
+                "data": [
+                    {"name": "Visitors", "value": 100},
+                    {"name": "Signups", "value": 82},
+                    {"name": "Trials", "value": 64},
+                    {"name": "Orders", "value": 46},
+                    {"name": "Renewals", "value": 28}
+                ]
+            }
+        ]
+    },
+    "heatmap": {
+        "tooltip": {},
+        "grid": {"left": 55, "right": 25, "top": 25, "bottom": 75},
+        "xAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
+        "yAxis": {"type": "category", "data": ["00:00", "06:00", "12:00", "18:00"]},
+        "visualMap": {"min": 0, "max": 100, "orient": "horizontal", "left": "center", "bottom": 0},
+        "series": [
+            {
+                "type": "heatmap",
+                "label": {"show": true},
+                "data": [
+                    [0, 0, 0],
+                    [0, 1, 23],
+                    [0, 2, 46],
+                    [0, 3, 69],
+                    [1, 0, 19],
+                    [1, 1, 42],
+                    [1, 2, 65],
+                    [1, 3, 88],
+                    [2, 0, 38],
+                    [2, 1, 61],
+                    [2, 2, 84],
+                    [2, 3, 6],
+                    [3, 0, 57],
+                    [3, 1, 80],
+                    [3, 2, 2],
+                    [3, 3, 25],
+                    [4, 0, 76],
+                    [4, 1, 99],
+                    [4, 2, 21],
+                    [4, 3, 44],
+                    [5, 0, 95],
+                    [5, 1, 17],
+                    [5, 2, 40],
+                    [5, 3, 63],
+                    [6, 0, 13],
+                    [6, 1, 36],
+                    [6, 2, 59],
+                    [6, 3, 82]
+                ]
+            }
+        ]
+    },
+    "calendar": {
+        "tooltip": {},
+        "calendar": {
+            "top": 65,
+            "left": 60,
+            "right": 30,
+            "range": "2026-10",
+            "cellSize": ["auto", "auto"],
+            "yearLabel": {"show": false},
+            "bottom": 70
+        },
+        "visualMap": {"min": 0, "max": 100, "orient": "horizontal", "left": "center", "bottom": 0},
+        "series": [
+            {
+                "type": "heatmap",
+                "coordinateSystem": "calendar",
+                "data": [
+                    ["2026-10-01", 17],
+                    ["2026-10-02", 34],
+                    ["2026-10-03", 51],
+                    ["2026-10-04", 68],
+                    ["2026-10-05", 85],
+                    ["2026-10-06", 1],
+                    ["2026-10-07", 18],
+                    ["2026-10-08", 35],
+                    ["2026-10-09", 52],
+                    ["2026-10-10", 69],
+                    ["2026-10-11", 86],
+                    ["2026-10-12", 2],
+                    ["2026-10-13", 19],
+                    ["2026-10-14", 36],
+                    ["2026-10-15", 53],
+                    ["2026-10-16", 70],
+                    ["2026-10-17", 87],
+                    ["2026-10-18", 3],
+                    ["2026-10-19", 20],
+                    ["2026-10-20", 37],
+                    ["2026-10-21", 54],
+                    ["2026-10-22", 71],
+                    ["2026-10-23", 88],
+                    ["2026-10-24", 4],
+                    ["2026-10-25", 21],
+                    ["2026-10-26", 38],
+                    ["2026-10-27", 55],
+                    ["2026-10-28", 72],
+                    ["2026-10-29", 89],
+                    ["2026-10-30", 5],
+                    ["2026-10-31", 22]
+                ]
+            }
+        ]
+    },
+    "candlestick": {
+        "tooltip": {"trigger": "axis"},
+        "grid": {"left": 55, "right": 25, "top": 25, "bottom": 65},
+        "xAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]},
+        "yAxis": {"scale": true},
+        "dataZoom": [{"type": "inside"}, {"type": "slider", "height": 20, "bottom": 0}],
+        "series": [
+            {
+                "type": "candlestick",
+                "data": [
+                    [20, 25, 18, 28],
+                    [25, 23, 20, 29],
+                    [23, 30, 21, 32],
+                    [30, 28, 26, 34],
+                    [28, 35, 27, 38],
+                    [35, 33, 31, 39],
+                    [33, 40, 32, 42]
+                ]
+            }
+        ]
+    },
+    "boxplot": {
+        "tooltip": {"trigger": "item"},
+        "grid": {"left": 50, "right": 25, "top": 25, "bottom": 40},
+        "xAxis": {"type": "category", "data": ["Mobile", "Desktop", "Search", "Social"]},
+        "yAxis": {"type": "value"},
+        "series": [
+            {
+                "type": "boxplot",
+                "data": [[5, 15, 25, 35, 50], [10, 25, 40, 55, 70], [8, 20, 32, 48, 65], [12, 30, 45, 62, 85]]
+            },
+            {"type": "scatter", "data": [[0, 65], [2, 80], [3, 95]]}
+        ]
+    },
+    "graph": {
+        "tooltip": {},
+        "series": [
+            {
+                "type": "graph",
+                "layout": "circular",
+                "roam": true,
+                "symbolSize": 64,
+                "label": {"show": true},
+                "edgeSymbol": ["none", "arrow"],
+                "lineStyle": {"curveness": 0.15},
+                "data": [{"name": "Client"}, {"name": "Gateway"}, {"name": "Service"}, {"name": "Storage"}, {"name": "Cache"}],
+                "links": [
+                    {"source": "Client", "target": "Gateway"},
+                    {"source": "Gateway", "target": "Service"},
+                    {"source": "Service", "target": "Storage"},
+                    {"source": "Service", "target": "Cache"},
+                    {"source": "Client", "target": "Cache"}
+                ],
+                "top": 35,
+                "bottom": 35
+            }
+        ]
+    },
+    "tree": {
+        "tooltip": {},
+        "series": [
+            {
+                "type": "tree",
+                "top": 30,
+                "bottom": 30,
+                "left": "12%",
+                "right": "18%",
+                "symbolSize": 12,
+                "initialTreeDepth": -1,
+                "label": {"position": "left"},
+                "leaves": {"label": {"position": "right"}},
+                "data": [
+                    {
+                        "name": "EUI",
+                        "children": [
+                            {"name": "Interface", "children": [{"name": "QML"}, {"name": "Controls"}]},
+                            {"name": "Engine", "children": [{"name": "C++"}, {"name": "Rendering"}]}
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "radialTree": {
+        "tooltip": {},
+        "series": [
+            {
+                "type": "tree",
+                "top": 30,
+                "bottom": 30,
+                "left": "10%",
+                "right": "10%",
+                "symbolSize": 12,
+                "initialTreeDepth": -1,
+                "label": {"position": "right", "distance": 8},
+                "leaves": {"label": {"position": "right"}},
+                "data": [
+                    {
+                        "name": "EUI",
+                        "children": [
+                            {"name": "Interface", "children": [{"name": "QML"}, {"name": "Controls"}]},
+                            {"name": "Engine", "children": [{"name": "C++"}, {"name": "Rendering"}]}
+                        ]
+                    }
+                ],
+                "layout": "radial"
+            }
+        ]
+    },
+    "treemap": {
+        "tooltip": {},
+        "series": [
+            {
+                "type": "treemap",
+                "top": 15,
+                "bottom": 35,
+                "left": 10,
+                "right": 10,
+                "upperLabel": {"show": true, "height": 24, "color": "#303133"},
+                "data": [
+                    {
+                        "name": "Mobile",
+                        "value": 60,
+                        "children": [{"name": "Search", "value": 35}, {"name": "Social", "value": 25}]
+                    },
+                    {
+                        "name": "Desktop",
+                        "value": 40,
+                        "children": [{"name": "Direct", "value": 25}, {"name": "Referral", "value": 15}]
+                    }
+                ],
+                "itemStyle": {"borderColor": "#e8edf4", "borderWidth": 3, "gapWidth": 3}
+            }
+        ]
+    },
+    "sunburst": {
+        "tooltip": {},
+        "series": [
+            {
+                "type": "sunburst",
+                "radius": ["15%", "80%"],
+                "label": {"rotate": "radial"},
+                "data": [
+                    {
+                        "name": "Mobile",
+                        "value": 60,
+                        "children": [{"name": "Search", "value": 35}, {"name": "Social", "value": 25}]
+                    },
+                    {
+                        "name": "Desktop",
+                        "value": 40,
+                        "children": [{"name": "Direct", "value": 25}, {"name": "Referral", "value": 15}]
+                    }
+                ]
+            }
+        ]
+    },
+    "sankey": {
+        "tooltip": {"trigger": "item"},
+        "series": [
+            {
+                "type": "sankey",
+                "left": 35,
+                "right": 90,
+                "top": 25,
+                "bottom": 25,
+                "lineStyle": {"color": "source", "curveness": 0.5},
+                "data": [{"name": "Search"}, {"name": "Social"}, {"name": "Mobile"}, {"name": "Desktop"}, {"name": "Orders"}],
+                "links": [
+                    {"source": "Search", "target": "Mobile", "value": 40},
+                    {"source": "Search", "target": "Desktop", "value": 25},
+                    {"source": "Social", "target": "Mobile", "value": 30},
+                    {"source": "Social", "target": "Desktop", "value": 15},
+                    {"source": "Mobile", "target": "Orders", "value": 55},
+                    {"source": "Desktop", "target": "Orders", "value": 30}
+                ]
+            }
+        ]
+    },
+    "parallel": {
+        "parallel": {"left": 55, "right": 55, "top": 40, "bottom": 35},
+        "parallelAxis": [
+            {"dim": 0, "name": "Speed", "min": 0, "max": 100},
+            {"dim": 1, "name": "Quality", "min": 0, "max": 100},
+            {"dim": 2, "name": "Cost", "min": 0, "max": 100},
+            {"dim": 3, "name": "Reliability", "min": 0, "max": 100},
+            {"dim": 4, "name": "Coverage", "min": 0, "max": 100}
+        ],
+        "series": [
+            {
+                "type": "parallel",
+                "lineStyle": {"width": 2, "opacity": 0.6},
+                "data": [[90, 80, 60, 85, 75], [70, 95, 80, 90, 60], [60, 70, 95, 65, 90], [85, 65, 70, 95, 80]]
+            }
+        ]
+    },
+    "themeRiver": {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"bottom": 0},
+        "singleAxis": {"type": "time", "top": 30, "bottom": 60},
+        "series": [
+            {
+                "type": "themeRiver",
+                "data": [
+                    ["2026-10-01", 23, "Mobile"],
+                    ["2026-10-01", 24, "Desktop"],
+                    ["2026-10-01", 25, "Search"],
+                    ["2026-10-02", 26, "Mobile"],
+                    ["2026-10-02", 28, "Desktop"],
+                    ["2026-10-02", 30, "Search"],
+                    ["2026-10-03", 29, "Mobile"],
+                    ["2026-10-03", 32, "Desktop"],
+                    ["2026-10-03", 35, "Search"],
+                    ["2026-10-04", 32, "Mobile"],
+                    ["2026-10-04", 36, "Desktop"],
+                    ["2026-10-04", 40, "Search"],
+                    ["2026-10-05", 35, "Mobile"],
+                    ["2026-10-05", 40, "Desktop"],
+                    ["2026-10-05", 45, "Search"],
+                    ["2026-10-06", 38, "Mobile"],
+                    ["2026-10-06", 44, "Desktop"],
+                    ["2026-10-06", 50, "Search"],
+                    ["2026-10-07", 41, "Mobile"],
+                    ["2026-10-07", 48, "Desktop"],
+                    ["2026-10-07", 20, "Search"],
+                    ["2026-10-08", 44, "Mobile"],
+                    ["2026-10-08", 52, "Desktop"],
+                    ["2026-10-08", 25, "Search"],
+                    ["2026-10-09", 47, "Mobile"],
+                    ["2026-10-09", 21, "Desktop"],
+                    ["2026-10-09", 30, "Search"],
+                    ["2026-10-10", 50, "Mobile"],
+                    ["2026-10-10", 25, "Desktop"],
+                    ["2026-10-10", 35, "Search"],
+                    ["2026-10-11", 53, "Mobile"],
+                    ["2026-10-11", 29, "Desktop"],
+                    ["2026-10-11", 40, "Search"],
+                    ["2026-10-12", 21, "Mobile"],
+                    ["2026-10-12", 33, "Desktop"],
+                    ["2026-10-12", 45, "Search"],
+                    ["2026-10-13", 24, "Mobile"],
+                    ["2026-10-13", 37, "Desktop"],
+                    ["2026-10-13", 50, "Search"],
+                    ["2026-10-14", 27, "Mobile"],
+                    ["2026-10-14", 41, "Desktop"],
+                    ["2026-10-14", 20, "Search"]
+                ],
+                "label": {"show": false}
+            }
+        ]
+    },
+    "polarBar": {
+        "tooltip": {},
+        "legend": {"bottom": 0},
+        "polar": {"radius": "70%"},
+        "angleAxis": {"type": "category", "data": ["Mon", "Tue", "Wed", "Thu", "Fri"]},
+        "radiusAxis": {},
+        "series": [
+            {
+                "name": "Mobile",
+                "type": "bar",
+                "coordinateSystem": "polar",
+                "stack": "total",
+                "data": [12, 18, 15, 25, 20]
+            },
+            {
+                "name": "Desktop",
+                "type": "bar",
+                "coordinateSystem": "polar",
+                "stack": "total",
+                "data": [8, 12, 10, 15, 18]
+            }
+        ]
+    },
+    "pictorialBar": {
+        "tooltip": {},
+        "grid": {"left": 50, "right": 25, "top": 25, "bottom": 40},
+        "xAxis": {"type": "category", "data": ["QML", "C++", "Qt"]},
+        "yAxis": {"type": "value"},
+        "series": [
+            {
+                "type": "pictorialBar",
+                "symbol": "roundRect",
+                "symbolRepeat": true,
+                "symbolSize": [35, 10],
+                "symbolMargin": 3,
+                "data": [75, 92, 86]
+            }
+        ]
+    },
+    "lines": {
+        "tooltip": {},
+        "grid": {"left": 35, "right": 35, "top": 25, "bottom": 30},
+        "xAxis": {"min": 0, "max": 100},
+        "yAxis": {"min": 0, "max": 100},
+        "series": [
+            {
+                "type": "lines",
+                "coordinateSystem": "cartesian2d",
+                "effect": {"show": true, "symbolSize": 6},
+                "lineStyle": {"width": 2, "curveness": 0.2},
+                "data": [{"coords": [[10, 20], [90, 80]]}, {"coords": [[10, 80], [90, 20]]}, {"coords": [[10, 50], [90, 50]]}]
+            }
+        ]
+    },
+    "dataset": {
+        "tooltip": {"trigger": "axis"},
+        "legend": {"bottom": 0},
+        "grid": {"left": 50, "right": 25, "top": 25, "bottom": 65},
+        "dataset": {"source": [["Product", "Mobile", "Desktop"], ["QML", 75, 90], ["C++", 85, 70], ["Qt", 95, 80]]},
+        "xAxis": {"type": "category"},
+        "yAxis": {},
+        "series": [
+            {"type": "bar", "encode": {"x": "Product", "y": "Mobile"}},
+            {"type": "bar", "encode": {"x": "Product", "y": "Desktop"}}
+        ]
+    }
+}

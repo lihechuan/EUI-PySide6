@@ -1,0 +1,500 @@
+{
+  "fadeIn": [
+    "Fade",
+    "In",
+    0,
+    0
+  ],
+  "fadeOut": [
+    "Fade",
+    "Out",
+    0,
+    0
+  ],
+  "slideInUp": [
+    "Slide",
+    "In",
+    0,
+    1
+  ],
+  "slideInLeft": [
+    "Slide",
+    "In",
+    -1,
+    0
+  ],
+  "scaleIn": [
+    "Scale",
+    "In",
+    0,
+    0
+  ],
+  "scaleOut": [
+    "Scale",
+    "Out",
+    0,
+    0
+  ],
+  "shake": [
+    "Shake",
+    "Attention",
+    1,
+    0
+  ],
+  "pulse": [
+    "Pulse",
+    "Attention",
+    0,
+    0
+  ],
+  "fadeInUp": [
+    "Fade",
+    "In",
+    0,
+    1
+  ],
+  "fadeInDown": [
+    "Fade",
+    "In",
+    0,
+    -1
+  ],
+  "fadeInLeft": [
+    "Fade",
+    "In",
+    -1,
+    0
+  ],
+  "fadeInRight": [
+    "Fade",
+    "In",
+    1,
+    0
+  ],
+  "fadeOutUp": [
+    "Fade",
+    "Out",
+    0,
+    -1
+  ],
+  "fadeOutDown": [
+    "Fade",
+    "Out",
+    0,
+    1
+  ],
+  "fadeOutLeft": [
+    "Fade",
+    "Out",
+    -1,
+    0
+  ],
+  "fadeOutRight": [
+    "Fade",
+    "Out",
+    1,
+    0
+  ],
+  "fadeInTopLeft": [
+    "Fade",
+    "In",
+    -1,
+    -1
+  ],
+  "fadeInTopRight": [
+    "Fade",
+    "In",
+    1,
+    -1
+  ],
+  "fadeInBottomLeft": [
+    "Fade",
+    "In",
+    -1,
+    1
+  ],
+  "fadeInBottomRight": [
+    "Fade",
+    "In",
+    1,
+    1
+  ],
+  "fadeOutTopLeft": [
+    "Fade",
+    "Out",
+    -1,
+    -1
+  ],
+  "fadeOutTopRight": [
+    "Fade",
+    "Out",
+    1,
+    -1
+  ],
+  "fadeOutBottomLeft": [
+    "Fade",
+    "Out",
+    -1,
+    1
+  ],
+  "fadeOutBottomRight": [
+    "Fade",
+    "Out",
+    1,
+    1
+  ],
+  "slideInDown": [
+    "Slide",
+    "In",
+    0,
+    -1
+  ],
+  "slideInRight": [
+    "Slide",
+    "In",
+    1,
+    0
+  ],
+  "slideOutUp": [
+    "Slide",
+    "Out",
+    0,
+    -1
+  ],
+  "slideOutDown": [
+    "Slide",
+    "Out",
+    0,
+    1
+  ],
+  "slideOutLeft": [
+    "Slide",
+    "Out",
+    -1,
+    0
+  ],
+  "slideOutRight": [
+    "Slide",
+    "Out",
+    1,
+    0
+  ],
+  "zoomIn": [
+    "Zoom",
+    "In",
+    0,
+    0
+  ],
+  "zoomOut": [
+    "Zoom",
+    "Out",
+    0,
+    0
+  ],
+  "zoomInUp": [
+    "Zoom",
+    "In",
+    0,
+    1
+  ],
+  "zoomInDown": [
+    "Zoom",
+    "In",
+    0,
+    -1
+  ],
+  "zoomInLeft": [
+    "Zoom",
+    "In",
+    -1,
+    0
+  ],
+  "zoomInRight": [
+    "Zoom",
+    "In",
+    1,
+    0
+  ],
+  "zoomOutUp": [
+    "Zoom",
+    "Out",
+    0,
+    -1
+  ],
+  "zoomOutDown": [
+    "Zoom",
+    "Out",
+    0,
+    1
+  ],
+  "zoomOutLeft": [
+    "Zoom",
+    "Out",
+    -1,
+    0
+  ],
+  "zoomOutRight": [
+    "Zoom",
+    "Out",
+    1,
+    0
+  ],
+  "rotateIn": [
+    "Rotate",
+    "In",
+    0,
+    0
+  ],
+  "rotateOut": [
+    "Rotate",
+    "Out",
+    0,
+    0
+  ],
+  "rotateInUpLeft": [
+    "Rotate",
+    "In",
+    -1,
+    -1
+  ],
+  "rotateInUpRight": [
+    "Rotate",
+    "In",
+    1,
+    -1
+  ],
+  "rotateInDownLeft": [
+    "Rotate",
+    "In",
+    -1,
+    1
+  ],
+  "rotateInDownRight": [
+    "Rotate",
+    "In",
+    1,
+    1
+  ],
+  "rotateOutUpLeft": [
+    "Rotate",
+    "Out",
+    -1,
+    -1
+  ],
+  "rotateOutUpRight": [
+    "Rotate",
+    "Out",
+    1,
+    -1
+  ],
+  "rotateOutDownLeft": [
+    "Rotate",
+    "Out",
+    -1,
+    1
+  ],
+  "rotateOutDownRight": [
+    "Rotate",
+    "Out",
+    1,
+    1
+  ],
+  "bounce": [
+    "Bounce",
+    "Attention",
+    0,
+    0
+  ],
+  "bounceIn": [
+    "Bounce",
+    "In",
+    0,
+    0
+  ],
+  "bounceOut": [
+    "Bounce",
+    "Out",
+    0,
+    0
+  ],
+  "bounceInUp": [
+    "Bounce",
+    "In",
+    0,
+    1
+  ],
+  "bounceInDown": [
+    "Bounce",
+    "In",
+    0,
+    -1
+  ],
+  "bounceInLeft": [
+    "Bounce",
+    "In",
+    -1,
+    0
+  ],
+  "bounceInRight": [
+    "Bounce",
+    "In",
+    1,
+    0
+  ],
+  "bounceOutUp": [
+    "Bounce",
+    "Out",
+    0,
+    -1
+  ],
+  "bounceOutDown": [
+    "Bounce",
+    "Out",
+    0,
+    1
+  ],
+  "bounceOutLeft": [
+    "Bounce",
+    "Out",
+    -1,
+    0
+  ],
+  "bounceOutRight": [
+    "Bounce",
+    "Out",
+    1,
+    0
+  ],
+  "flip": [
+    "Flip",
+    "Attention",
+    0,
+    1
+  ],
+  "flipInX": [
+    "Flip",
+    "In",
+    1,
+    0
+  ],
+  "flipInY": [
+    "Flip",
+    "In",
+    0,
+    1
+  ],
+  "flipOutX": [
+    "Flip",
+    "Out",
+    1,
+    0
+  ],
+  "flipOutY": [
+    "Flip",
+    "Out",
+    0,
+    1
+  ],
+  "shakeX": [
+    "Shake",
+    "Attention",
+    1,
+    0
+  ],
+  "shakeY": [
+    "Shake",
+    "Attention",
+    0,
+    1
+  ],
+  "swing": [
+    "Swing",
+    "Attention",
+    0,
+    0
+  ],
+  "tada": [
+    "Tada",
+    "Attention",
+    0,
+    0
+  ],
+  "wobble": [
+    "Wobble",
+    "Attention",
+    0,
+    0
+  ],
+  "jello": [
+    "Jello",
+    "Attention",
+    0,
+    0
+  ],
+  "rubberBand": [
+    "RubberBand",
+    "Attention",
+    0,
+    0
+  ],
+  "flash": [
+    "Flash",
+    "Attention",
+    0,
+    0
+  ],
+  "heartBeat": [
+    "HeartBeat",
+    "Attention",
+    0,
+    0
+  ],
+  "headShake": [
+    "HeadShake",
+    "Attention",
+    0,
+    0
+  ],
+  "spin": [
+    "Spin",
+    "Attention",
+    0,
+    0
+  ],
+  "rollIn": [
+    "Roll",
+    "In",
+    -1,
+    0
+  ],
+  "rollOut": [
+    "Roll",
+    "Out",
+    1,
+    0
+  ],
+  "lightSpeedInLeft": [
+    "LightSpeed",
+    "In",
+    -1,
+    0
+  ],
+  "lightSpeedInRight": [
+    "LightSpeed",
+    "In",
+    1,
+    0
+  ],
+  "lightSpeedOutLeft": [
+    "LightSpeed",
+    "Out",
+    -1,
+    0
+  ],
+  "lightSpeedOutRight": [
+    "LightSpeed",
+    "Out",
+    1,
+    0
+  ]
+}

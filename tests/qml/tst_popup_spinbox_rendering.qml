@@ -69,7 +69,9 @@ TestCase {
         for (const point of [[0, image.height / 2], [image.width - 1, image.height / 2],
                 [10, 0], [image.width - 10, 0], [10, image.height - 1], [image.width - 10, image.height - 1]]) {
             verify(Math.abs(image.red(point[0], point[1]) - Math.round(border.r * 255)) <= 2,
-                "Input addons must preserve the outer border")
+                "Input addons must preserve the outer border at " + point
+                    + "; actual=" + image.pixel(point[0], point[1]) + "; expected=" + border
+                    + "; image=" + image.width + "x" + image.height)
             verify(Math.abs(image.green(point[0], point[1]) - Math.round(border.g * 255)) <= 2)
             verify(Math.abs(image.blue(point[0], point[1]) - Math.round(border.b * 255)) <= 2)
             compare(image.alpha(point[0], point[1]), 255)

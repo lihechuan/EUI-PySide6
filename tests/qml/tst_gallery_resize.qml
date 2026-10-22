@@ -50,7 +50,7 @@ TestCase {
         const maximize = findChild(window, "eAppBarMaximizeButton")
         verify(maximize !== null)
         mouseClick(maximize)
-        tryCompare(window, "visibility", Window.Maximized)
+        tryCompare(window, "visibility", Qt.platform.os === "osx" ? Window.FullScreen : Window.Maximized)
         tryCompare(page, "width", window.width - window.navigationWidth)
         tryCompare(column, "width", page.width - margin * 2)
         compare(panel.width, column.width)

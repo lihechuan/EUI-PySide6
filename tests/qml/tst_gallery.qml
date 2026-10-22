@@ -520,6 +520,7 @@ TestCase {
         compare(exampleCatalog.find("ETable").label, "表格")
         mouseClick(languageSwitch)
         compare(ELocale.language, "en")
+        tryVerify(function() { return visibleSource(loader.item) !== null })
         const source = visibleSource(loader.item)
         verify(source !== null)
         verify(source.code.indexOf("\n") >= 0)

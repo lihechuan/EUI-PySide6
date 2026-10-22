@@ -15,14 +15,14 @@ $metadata = Get-Content -LiteralPath $jobPath -Raw -Encoding UTF8 | ConvertFrom-
 $target = [IO.Path]::GetFullPath($metadata.target).TrimEnd('\')
 $parentDirectory = Split-Path -LiteralPath $workspace
 if ((Split-Path -LiteralPath $target) -ne $parentDirectory -or
-    -not (Test-Path -LiteralPath (Join-Path $target 'EUI-Gallery.exe')) -or
+    -not (Test-Path -LiteralPath (Join-Path $target 'EUI-PySide6-Gallery.exe')) -or
     (Get-Item -LiteralPath $target).Attributes -band [IO.FileAttributes]::ReparsePoint -or
     $metadata.version -notmatch '^\d+(\.\d+){1,3}$' -or
     $metadata.sha256 -notmatch '^[0-9a-f]{64}$') {
     throw 'Invalid update target.'
 }
 $package = Join-Path $workspace 'package.zip'
-$staged = Join-Path $workspace 'EUI-Gallery'
+$staged = Join-Path $workspace 'EUI-PySide6-Gallery'
 $backup = Join-Path $parentDirectory ((Split-Path -Leaf $target) + '.before-' + (Split-Path -Leaf $workspace))
 if (Test-Path -LiteralPath $backup) {
     throw 'Backup already exists.'
@@ -48,7 +48,7 @@ if ($Mode -eq 'prepare') {
         foreach ($entry in $archive.Entries) {
             $path = $entry.FullName.Replace('\', '/')
             $parts = $path.TrimEnd('/').Split('/')
-            if (-not $path.StartsWith('EUI-Gallery/') -or $path.Contains('//') -or
+            if (-not $path.StartsWith('EUI-PySide6-Gallery/') -or $path.Contains('//') -or
                 ($parts | Where-Object { $_ -in '.', '..' -or $_ -match '[:<>"|?*\x00-\x1f]' -or
                     $_.EndsWith('.') -or $_.EndsWith(' ') -or
                     $_ -match '^(?i:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)' })) {
@@ -81,13 +81,13 @@ if ($Mode -eq 'prepare') {
     } finally {
         $archive.Dispose()
     }
-    foreach ($name in 'EUI-Gallery.exe', 'Qt5Core.dll', 'qt.conf', 'EUI\euiplugin.dll') {
+    foreach ($name in 'EUI-PySide6-Gallery.exe', '_internal\PySide6\Qt6Core.dll', '_internal\eui\resources.rcc', '_internal\eui_gallery\example.rcc') {
         if (-not (Test-Path -LiteralPath (Join-Path $staged $name) -PathType Leaf)) {
             throw 'Incomplete update package.'
         }
     }
-    $core = [Diagnostics.FileVersionInfo]::GetVersionInfo((Join-Path $staged 'Qt5Core.dll'))
-    if ($core.FileMajorPart -ne 5) { throw 'Invalid Qt runtime.' }
+    $core = [Diagnostics.FileVersionInfo]::GetVersionInfo((Join-Path $staged '_internal\PySide6\Qt6Core.dll'))
+    if ($core.FileMajorPart -ne 6) { throw 'Invalid Qt runtime.' }
     exit 0
 }
 
@@ -97,7 +97,7 @@ $successor = $null
 
 function Start-Gallery([string]$Arguments) {
     $start = [Diagnostics.ProcessStartInfo]::new()
-    $start.FileName = Join-Path $target 'EUI-Gallery.exe'
+    $start.FileName = Join-Path $target 'EUI-PySide6-Gallery.exe'
     $start.WorkingDirectory = $target
     $start.Arguments = $Arguments
     $start.UseShellExecute = $false

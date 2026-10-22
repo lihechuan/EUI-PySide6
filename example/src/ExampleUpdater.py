@@ -1,6 +1,9 @@
 import hashlib
 import json
+import os
+import platform
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -30,40 +33,54 @@ class GalleryUpdater(QObject):
         self._asset = self._sums = None
         self._network = QNetworkAccessManager(self)
         self._reply = self._workspace = self._process = None
+        self._frozen = bool(getattr(sys, "frozen", False))
         self._development = (Path(__file__).resolve().parents[2] / "pyproject.toml").exists()
 
     def _set_stage(self, stage, error="", progress=0.0):
         self._stage, self._error, self._progress = stage, error, progress
         self.changed.emit()
 
-    def _request(self, url, limit, callback):
+    def _request(self, url, limit, callback, destination=None):
         request = QNetworkRequest(QUrl(url))
         request.setTransferTimeout(60000)
         request.setRawHeader(b"User-Agent", b"EUI-PySide6")
         reply = self._network.get(request)
         self._reply = reply
         content = bytearray()
+        received = 0
+        stream = destination.open("wb") if destination else None
 
         def read():
-            content.extend(bytes(reply.readAll()))
-            if len(content) > limit:
+            nonlocal received
+            data = bytes(reply.readAll())
+            received += len(data)
+            if received > limit:
                 reply.abort()
+                return
+            if stream:
+                stream.write(data)
+            else:
+                content.extend(data)
             if self._stage == "downloading":
-                self._progress = min(.85, .05 + len(content) / limit * .8)
+                self._progress = min(.85, .05 + received / limit * .8)
                 self.changed.emit()
 
         def finished():
-            read()
             self._reply = None
             try:
+                read()
+                if stream:
+                    stream.close()
                 status = reply.attribute(QNetworkRequest.HttpStatusCodeAttribute)
-                if reply.error() != QNetworkReply.NoError or len(content) > limit:
+                if reply.error() != QNetworkReply.NoError or received > limit:
                     self._set_stage("failed", "notPublished" if status == 404 else "networkFailed")
                 else:
-                    callback(bytes(content))
+                    callback(destination if destination else bytes(content))
             except (OSError, ValueError, TypeError, KeyError):
                 self._set_stage("failed", "invalidRelease")
             finally:
+                if stream:
+                    stream.close()
                 reply.deleteLater()
 
         reply.readyRead.connect(read)
@@ -89,11 +106,19 @@ class GalleryUpdater(QObject):
             self._set_stage("current")
             return
         filename = f"eui_pyside6-{version}-py3-none-any.whl"
+        limit = 128 * 1024 * 1024
+        if self._frozen:
+            machine = platform.machine().lower()
+            target = "windows-x64" if sys.platform == "win32" and machine in ("amd64", "x86_64") else ""
+            if sys.platform == "darwin" and machine in ("x86_64", "arm64"):
+                target = "macos-" + ("x64" if machine == "x86_64" else "arm64")
+            filename = f"EUI-PySide6-Gallery-{version}-{target}-portable.zip"
+            limit = 2 * 1024 * 1024 * 1024
         for asset in release["assets"]:
             name, url = asset["name"], asset["browser_download_url"]
             if not url.startswith(f"https://github.com/{self.repository}/releases/download/"):
                 continue
-            if name == filename and 0 < asset["size"] <= 128 * 1024 * 1024:
+            if name == filename and 0 < asset["size"] <= limit:
                 self._asset = asset
             elif name in ("SHA256SUMS", "SHA256SUMS.txt"):
                 self._sums = url
@@ -117,6 +142,9 @@ class GalleryUpdater(QObject):
                 self._set_stage("failed", "invalidChecksum")
                 return
             self._set_stage("downloading", progress=.05)
+            if self._frozen:
+                self._install_desktop(expected, language, dark)
+                return
 
             def downloaded(data):
                 if len(data) != self._asset["size"] or hashlib.sha256(data).hexdigest() != expected:
@@ -138,9 +166,63 @@ class GalleryUpdater(QObject):
 
         self._request(self._sums, 1024 * 1024, checksums)
 
+    def _desktop_target(self):
+        executable = Path(sys.executable).resolve()
+        return executable.parents[2] if sys.platform == "darwin" else executable.parent
+
+    def _update_command(self, mode):
+        workspace = Path(self._workspace.path())
+        if sys.platform == "win32":
+            program = str(Path(os.environ["WINDIR"]) / "System32/WindowsPowerShell/v1.0/powershell.exe")
+            return program, ["-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File",
+                             str(workspace / "Update.ps1"), "-Mode", mode, "-Job", str(workspace / "job.json")]
+        return "/bin/sh", [str(workspace / "Update.sh"), mode, str(workspace / "job.json"),
+                           str(self._desktop_target()), str(os.getpid()), self._latest,
+                           self._update_checksum, self._update_language, "dark" if self._update_dark else "light"]
+
+    def _install_desktop(self, checksum, language, dark):
+        target = self._desktop_target()
+        self._workspace = QTemporaryDir(str(target.parent / ".eui-update-XXXXXX"))
+        if not self._workspace.isValid():
+            self._set_stage("failed", "writeFailed")
+            return
+        workspace = Path(self._workspace.path())
+        job = workspace / "job.json"
+        self._update_checksum, self._update_language, self._update_dark = checksum, language, dark
+        arguments = ["--update-result", str(job), "--language", language] + (["--dark"] if dark else [])
+        metadata = dict(target=str(target), version=self._latest, sha256=checksum, pid=os.getpid(), arguments=arguments)
+        job.write_text(json.dumps(metadata), encoding="utf-8")
+        script = "Update.ps1" if sys.platform == "win32" else "Update.sh"
+        shutil.copy2(Path(__file__).resolve().parents[1] / "assets/update" / script, workspace / script)
+
+        def downloaded(path):
+            with path.open("rb") as stream:
+                hasher = hashlib.sha256()
+                for block in iter(lambda: stream.read(1024 * 1024), b""):
+                    hasher.update(block)
+                actual = hasher.hexdigest()
+            if path.stat().st_size != self._asset["size"] or actual != checksum:
+                self._set_stage("failed", "hashMismatch")
+                return
+            self._set_stage("extracting", progress=.9)
+            self._process = QProcess(self)
+            self._process.finished.connect(self._installed)
+            self._process.errorOccurred.connect(lambda _: self._set_stage("failed", "prepareFailed"))
+            program, command = self._update_command("prepare")
+            self._process.start(program, command)
+
+        self._request(self._asset["browser_download_url"], self._asset["size"], downloaded, workspace / "package.zip")
+
     @Slot(int, QProcess.ExitStatus)
     def _installed(self, code, status):
         if code == 0 and status == QProcess.NormalExit:
+            if self._frozen:
+                program, command = self._update_command("apply")
+                started, _ = QProcess.startDetached(program, command, self._workspace.path())
+                if not started:
+                    self._set_stage("failed", "prepareFailed")
+                    return
+                self._workspace.setAutoRemove(False)
             self._set_stage("completed", progress=1.0)
             self.restartReady.emit()
         else:

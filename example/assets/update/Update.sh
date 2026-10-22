@@ -12,8 +12,8 @@ workspace=$(CDPATH= cd -- "$(dirname -- "$job")" && pwd -P)
 parent=$(dirname -- "$workspace")
 case "$(basename -- "$workspace")" in .eui-update-*) ;; *) exit 1 ;; esac
 [ "$job" = "$workspace/job.json" ] && [ ! -L "$target" ] && [ ! -L "$job" ]
-[ "$(dirname -- "$target")" = "$parent" ] && [ -f "$target/Contents/MacOS/example" ]
-staged="$workspace/EUI Gallery.app"
+[ "$(dirname -- "$target")" = "$parent" ] && [ -f "$target/Contents/MacOS/EUI-PySide6-Gallery" ]
+staged="$workspace/EUI PySide6 Gallery.app"
 backup="$target.before-$(basename -- "$workspace")"
 [ ! -e "$backup" ]
 
@@ -23,14 +23,14 @@ if [ "$mode" = prepare ]; then
     /usr/bin/zipinfo -1 "$workspace/package.zip" > "$workspace/entries"
     while IFS= read -r path; do
         case "$path" in
-            'EUI Gallery.app/'*|'__MACOSX/EUI Gallery.app/'*|'__MACOSX/') ;;
+            'EUI PySide6 Gallery.app/'*|'__MACOSX/EUI PySide6 Gallery.app/'*|'__MACOSX/') ;;
             *) exit 1 ;;
         esac
         case "/${path%/}/" in *'/../'*|*'/./'*|*'//'*|*'\'*) exit 1 ;; esac
     done < "$workspace/entries"
     echo 0
     /usr/bin/ditto -x -k "$workspace/package.zip" "$workspace"
-    [ -f "$staged/Contents/MacOS/example" ] && [ ! -L "$staged" ]
+    [ -f "$staged/Contents/MacOS/EUI-PySide6-Gallery" ] && [ ! -L "$staged" ]
     /usr/bin/codesign --verify --deep --strict "$staged"
     echo 100
     exit 0
@@ -64,9 +64,9 @@ mv "$staged" "$target"
 installed=1
 printf '%s' "$version" > "$workspace/installed"
 if [ "$theme" = dark ]; then
-    "$target/Contents/MacOS/example" --update-result "$job" --language "$language" --dark > "$workspace/launch.log" 2>&1 &
+    "$target/Contents/MacOS/EUI-PySide6-Gallery" --update-result "$job" --language "$language" --dark > "$workspace/launch.log" 2>&1 &
 else
-    "$target/Contents/MacOS/example" --update-result "$job" --language "$language" > "$workspace/launch.log" 2>&1 &
+    "$target/Contents/MacOS/EUI-PySide6-Gallery" --update-result "$job" --language "$language" > "$workspace/launch.log" 2>&1 &
 fi
 new_pid=$!
 count=0

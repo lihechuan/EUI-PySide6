@@ -16,3 +16,7 @@ The root [LICENSE](LICENSE) applies to EUI-PySide6's own code and documentation.
 本项目的 wheel 和源码包保留上述内置资源的许可、署名及来源说明。运行时依赖由 pip 安装，不包含在 EUI-PySide6 wheel 中。品牌名称和图形的商标权不因代码许可证而转移。
 
 The project wheel and source distribution retain the licenses, attribution, and source notices for the bundled assets above. Runtime dependencies are installed by pip and are not included in the EUI-PySide6 wheel. Code licenses do not transfer trademark rights in brand names or artwork.
+
+Gallery 安装包和免安装包另行内置 Python、PySide6/Qt、Pillow、qrcode 及其运行依赖，随包 `licenses/` 目录保留相关许可和声明；macOS 中该目录位于 app bundle 的 `Contents/Resources/`。PyInstaller 引导程序使用其 GPL 许可和引导程序分发例外，声明同样保留。Qt 内含组件继续遵循其各自许可。
+
+Gallery installers and portable packages additionally bundle Python, PySide6/Qt, Pillow, qrcode, and their runtime dependencies. Their license texts and notices are retained under `licenses/`, located in `Contents/Resources/` inside macOS bundles. PyInstaller's bootloader uses its GPL license with the bootloader distribution exception, also retained. Components bundled with Qt retain their respective licenses.

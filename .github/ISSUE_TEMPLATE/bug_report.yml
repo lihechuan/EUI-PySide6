@@ -1,0 +1,40 @@
+name: Bug 报告 / Bug report
+description: 报告可复现的问题 / Report a reproducible problem
+body:
+  - type: input
+    id: component
+    attributes:
+      label: 组件与 EUI 版本 / Component and EUI version
+      placeholder: ETable, v1.3.2 或提交号 / commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境 / Environment
+      description: 操作系统、架构、Python/PySide6 版本；注明安装包或免安装包 / OS, architecture, Python/PySide6 versions, installer or portable package.
+      placeholder: Windows 11 x64, Python 3.12, PySide6 6.8.3
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤 / Steps to reproduce
+      description: 附上最小 QML 示例或可复现项目 / Include a minimal example when possible.
+      placeholder: |
+        1. 打开 / Open ...
+        2. 操作 / Perform ...
+        3. 观察 / Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: 预期与实际行为 / Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 日志与截图 / Logs and screenshots
+      description: 提交前移除密码、令牌和个人数据 / Remove credentials and personal data.

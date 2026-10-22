@@ -10,11 +10,13 @@ class TextDocument(QObject):
         self._document = None
 
     def _set_document(self, value):
+        if value is not None and not isinstance(value, QQuickTextDocument):
+            raise TypeError("document must be a QQuickTextDocument or None")
         if value is not self._document:
             self._document = value
             self.documentChanged.emit()
 
-    document = Property(QQuickTextDocument, lambda self: self._document, _set_document, notify=documentChanged)
+    document = Property(QObject, lambda self: self._document, _set_document, notify=documentChanged)
 
     @Slot(int, result="QVariantMap")
     def formatAt(self, position):

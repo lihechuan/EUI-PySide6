@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 使用指南 / Usage guide
+    url: https://github.com/lihechuan/EUI-PySide6/blob/master/README.md
+    about: 构建、接入、组件使用和部署 / Build, integration, components, and deployment

@@ -1,0 +1,17 @@
+name: 功能建议 / Feature request
+description: 说明具体使用场景和期望行为 / Describe a use case and desired behavior
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 使用场景与问题 / Use case and problem
+      description: 说明当前哪个组件或流程无法满足需求 / Explain the current limitation.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 期望行为 / Proposed behavior
+      description: 可附示例、截图及考虑过的替代方案 / Examples, screenshots, and alternatives are welcome.
+    validations:
+      required: true

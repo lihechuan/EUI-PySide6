@@ -1,5 +1,9 @@
 include LICENSE THIRD_PARTY_NOTICES.md README.md
+include CONTRIBUTING.md CHANGELOG.md
 include build/resources.py
+recursive-include docs *.md *.png
+recursive-include packaging *.py *.spec *.iss *.isl *.txt *.md
+recursive-include tests *.py *.qml *.js
 recursive-include assets *
 recursive-include source *.py *.qml *.js *.json *.svg *.ttf *.qsb *.html *.qrc *.rcc
 recursive-include source/thirdparty *

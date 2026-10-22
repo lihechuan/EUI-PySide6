@@ -1,6 +1,8 @@
 import argparse
+import json
 import os
 import sys
+from pathlib import Path
 
 
 def main():
@@ -9,6 +11,8 @@ def main():
     parser.add_argument("--language", choices=("zh", "en"), default="zh")
     parser.add_argument("--component", default="", help="Open a component by name, for example ETable")
     parser.add_argument("--smoke-test", action="store_true", help="Load the gallery offscreen and exit")
+    parser.add_argument("--update-result", default="", help=argparse.SUPPRESS)
+    parser.add_argument("--update-failed", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args()
     os.environ.setdefault("QT_QUICK_CONTROLS_STYLE", "Basic")
     if args.smoke_test:
@@ -31,6 +35,9 @@ def main():
     services = initialize(engine, language=args.language, dark=args.dark)
     gallery = install_gallery(engine, services)
     def restart():
+        if getattr(sys, "frozen", False):
+            app.quit()
+            return
         arguments = ["-m", "eui", "--language", services["ELocale"].language]
         if services["ETheme"].dark:
             arguments.append("--dark")
@@ -49,6 +56,18 @@ def main():
     engine.load(QUrl("qrc:/example/qml/component/App.qml"))
     if not engine.rootObjects():
         return 1
+    if args.update_failed:
+        gallery["exampleUpdater"]._set_stage("failed", "prepareFailed")
+    if args.update_result and getattr(sys, "frozen", False):
+        job = Path(args.update_result)
+        target = gallery["exampleUpdater"]._desktop_target()
+        if (job.name != "job.json" or not job.parent.name.startswith(".eui-update-")
+                or job.parent.parent.resolve() != target.parent or job.is_symlink() or job.parent.is_symlink()):
+            return 1
+        metadata = json.loads(job.read_text(encoding="utf-8"))
+        if Path(metadata["target"]).resolve() != target or metadata["version"] != __version__:
+            return 1
+        QTimer.singleShot(0, lambda: Path(str(job) + ".ready").write_text(__version__, encoding="ascii"))
     if args.smoke_test:
         QTimer.singleShot(1500, app.quit)
     code = app.exec()

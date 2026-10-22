@@ -3,6 +3,7 @@ import json
 import os
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
@@ -76,6 +77,24 @@ class BackendTests(unittest.TestCase):
         self.assertEqual(formatter.formatAt(1)["color"], QColor("red"))
         self.assertFalse(formatter.apply(0, 5, "color", "invalid color"))
 
+    def test_qml_can_bind_text_document_on_supported_qt_version(self):
+        engine = QQmlEngine()
+        initialize(engine)
+        component = QQmlComponent(engine)
+        component.setData(b'''import EUI.Private 1.0 as Private
+import QtQuick
+TextEdit {
+    id: editor
+    text: "hello"
+    property QtObject formatter: Private.TextDocument { document: editor.textDocument }
+}''', QUrl())
+        root = component.create()
+        self.assertIsNotNone(root, component.errorString())
+        formatter = root.property("formatter")
+        self.assertIsNotNone(formatter.document)
+        self.assertTrue(formatter.apply(0, 5, "bold", True))
+        self.assertTrue(formatter.formatAt(1)["bold"])
+
 
 class UpdateTests(unittest.TestCase):
     @classmethod
@@ -120,6 +139,30 @@ class UpdateTests(unittest.TestCase):
         updater._development = True
         updater.install()
         self.assertEqual(updater.error, "developmentBuild")
+
+    def test_frozen_windows_uses_platform_archive(self):
+        updater = GalleryUpdater()
+        updater._frozen = True
+        release = self.release()
+        name = "EUI-PySide6-Gallery-9.0.0-windows-x64-portable.zip"
+        release["assets"][0].update(name=name, size=256 * 1024 * 1024,
+                                    browser_download_url="https://github.com/lihechuan/EUI-PySide6/releases/download/v9.0.0/" + name)
+        with patch("sys.platform", "win32"), patch("platform.machine", return_value="AMD64"):
+            updater._release(json.dumps(release).encode())
+        self.assertEqual(updater.stage, "available")
+        self.assertEqual(updater._asset["name"], name)
+
+    def test_frozen_macos_selects_matching_architecture(self):
+        for machine, architecture in (("x86_64", "x64"), ("arm64", "arm64")):
+            updater = GalleryUpdater()
+            updater._frozen = True
+            release = self.release()
+            name = f"EUI-PySide6-Gallery-9.0.0-macos-{architecture}-portable.zip"
+            release["assets"][0].update(name=name,
+                                        browser_download_url="https://github.com/lihechuan/EUI-PySide6/releases/download/v9.0.0/" + name)
+            with patch("sys.platform", "darwin"), patch("platform.machine", return_value=machine):
+                updater._release(json.dumps(release).encode())
+            self.assertEqual(updater.stage, "available")
 
 
 if __name__ == "__main__":

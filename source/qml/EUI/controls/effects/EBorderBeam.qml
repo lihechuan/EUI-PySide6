@@ -1,5 +1,6 @@
 import EUI 1.0
 import QtQuick 2.15
+import QtQuick.Window 2.15
 
 Item {
     id: control
@@ -136,7 +137,8 @@ Item {
         onVisibleChanged: requestPaint()
         onPaint: {
             const context = getContext("2d")
-            context.clearRect(0, 0, width, height)
+            const pixel = 1 / Screen.devicePixelRatio
+            context.clearRect(0, 0, Math.ceil(width) + pixel, Math.ceil(height) + pixel)
             if (!visible || perimeter <= 0 || control.strokeWidth <= 0 || control.beamSize <= 0)
                 return
 

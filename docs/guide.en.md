@@ -37,7 +37,7 @@ Run `python main.py --language en` using the environment above. Search for `EBut
 Download the `.whl` from [GitHub Releases](https://github.com/lihechuan/EUI-PySide6/releases), then install it in your application's environment:
 
 ```powershell
-python -m pip install ./eui_pyside6-1.3.2-py3-none-any.whl
+python -m pip install ./eui_pyside6-1.3.3-py3-none-any.whl
 ```
 
 For development, `python -m pip install -e /path/to/EUI-PySide6` installs this checkout. The distribution is named `EUI-PySide6`; its import package is `eui`. `eui_gallery` is the separate example package. The component library does not require your application to load the Gallery.
@@ -51,6 +51,8 @@ To build a wheel/source archive use `python -m pip install build` and `python -m
 ### 2.4 Open in Qt Creator
 
 Open the root `pyproject.toml` in Qt Creator. In Python interpreter settings select this checkout's `.venv/Scripts/python.exe` (Windows) or `.venv/bin/python` (macOS). Complete `pip install -e .` with that interpreter first. Set the run script to root `main.py`, working directory to the repository root, and arguments to `--language en`. Qt Creator's Python support may need enabling in its plugin settings. A C++ Qt Kit does not replace the Python environment.
+
+Name the run configuration `EUI PySide6 Gallery`. The Application Output tab uses this name; an empty name can appear as Custom Executable. This is independent of the Gallery window title. Windows source launches set a dedicated taskbar application identity and use the EUI icon; close and restart existing processes to apply it.
 
 ## 3. Integrate a Qt Quick application
 
@@ -447,7 +449,7 @@ Animations control visual appearance; application logic manages `visible`, `enab
 
 ### 4.8 Desktop components introduced in 1.2.0
 
-The desktop components below were introduced in software version `1.2.0`. When a catalog entry's `introducedIn` matches the current build version, Gallery navigation shows a green **New** badge and the overview lists those components together; component details retain the introduction version. The current `1.3.2` is a fix release, so components introduced in `1.2.0` and `1.3.0` do not show current-version badges.
+The desktop components below were introduced in software version `1.2.0`. When a catalog entry's `introducedIn` matches the current build version, Gallery navigation shows a green **New** badge and the overview lists those components together; component details retain the introduction version. The current `1.3.3` is a fix release, so components introduced in `1.2.0` and `1.3.0` do not show current-version badges.
 
 | Component | Purpose | Main API |
 | --- | --- | --- |

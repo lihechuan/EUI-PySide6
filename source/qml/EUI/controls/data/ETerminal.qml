@@ -60,13 +60,20 @@ Control {
         entries.push(record)
         state.entries = entries.slice(-Math.max(1, historyLimit))
         const generation = ++state.generation
+        let completed = false
         state.busy = true
         submitted(command)
         function finish(value, error) {
-            if (!control || generation !== state.generation)
+            if (!control || generation !== state.generation || completed)
                 return
-            record.output = value === undefined || value === null ? "" : String(value)
-            record.error = error === true
+            completed = true
+            try {
+                record.output = value === undefined || value === null ? "" : String(value)
+                record.error = error === true
+            } catch (conversionError) {
+                record.output = "Cannot convert command output to text"
+                record.error = true
+            }
             state.entries = state.entries.slice()
             state.busy = false
             control.completed(command, record.output, record.error)

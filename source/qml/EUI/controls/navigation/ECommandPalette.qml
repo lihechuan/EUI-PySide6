@@ -111,7 +111,7 @@ Popup {
             currentIndex: control.currentIndex
             ScrollBar.vertical: ScrollHandle {}
             boundsBehavior: Flickable.StopAtBounds
-            height: Math.min(count, Math.max(1, control.visibleRows)) * 52
+            height: Math.min(control.filteredItems.length, Math.max(1, control.visibleRows)) * 52
             delegate: ETextButton {
                 id: commandButton
 

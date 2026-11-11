@@ -194,9 +194,10 @@ Control {
         }
         Loader {
             anchors.fill: parent
-            active: image.status !== Image.Ready && sourceComponent !== null
             sourceComponent: image.status === Image.Error ? control.errorDelegate
                 : control.placeholderDelegate
+            active: image.status === Image.Error ? control.errorDelegate !== null
+                : image.status !== Image.Ready && control.placeholderDelegate !== null
         }
         MouseArea {
             anchors.fill: parent
@@ -263,7 +264,7 @@ Control {
 
             Keys.onLeftPressed: control.setActiveItem(control.previewIndex - 1)
             Keys.onRightPressed: control.setActiveItem(control.previewIndex + 1)
-            Keys.onPressed: {
+            Keys.onPressed: function(event) {
                 if (event.key === Qt.Key_Plus || event.key === Qt.Key_Equal) {
                     control.zoomPreview(Math.max(1.01, control.zoomRate))
                     event.accepted = true
@@ -316,7 +317,7 @@ Control {
                 drag.target: viewerImage
                 enabled: !control.viewerDelegate
 
-                onWheel: {
+                onWheel: function(wheel) {
                     control.zoomPreview(wheel.angleDelta.y > 0 ? Math.max(1.01, control.zoomRate)
                         : 1 / Math.max(1.01, control.zoomRate))
                     wheel.accepted = true

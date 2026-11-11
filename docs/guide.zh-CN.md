@@ -37,7 +37,7 @@ macOS 使用 `python3 -m venv .venv`，后续将 `.\.venv\Scripts\python.exe` �
 从 [GitHub Releases](https://github.com/lihechuan/EUI-PySide6/releases) 下载 `.whl`，在应用自己的环境中安装：
 
 ```powershell
-python -m pip install ./eui_pyside6-1.3.2-py3-none-any.whl
+python -m pip install ./eui_pyside6-1.3.3-py3-none-any.whl
 ```
 
 开发时使用 `python -m pip install -e /path/to/EUI-PySide6` 安装源码目录。发行包名为 `EUI-PySide6`，Python 导入名为 `eui`；`eui_gallery` 是独立示例包。接入组件库无需让自己的应用加载 Gallery。
@@ -51,6 +51,8 @@ python -m pip install ./eui_pyside6-1.3.2-py3-none-any.whl
 ### 2.4 在 Qt Creator 中打开
 
 在 Qt Creator 中打开根目录的 `pyproject.toml`。Python 解释器选择当前项目的 `.venv/Scripts/python.exe`（Windows）或 `.venv/bin/python`（macOS），先用这个解释器完成 `pip install -e .`。运行脚本设为根目录 `main.py`，工作目录设为仓库根目录，参数设为 `--language zh`。必要时在插件设置中启用 Python 支持。C++ Qt Kit 不能替代 Python 环境。
+
+将运行配置名称设为 `EUI PySide6 Gallery`；“应用程序输出”标签使用这个名称，名称为空时可能显示“自定义执行档”。它与 Gallery 窗口标题相互独立。Windows 源码启动会设置独立的任务栏应用标识并使用 EUI 图标；已运行的旧进程需要关闭后重新启动。
 
 ## 3. 接入自己的 Qt Quick 应用
 
@@ -448,7 +450,7 @@ EAnimation.play(card, "slideInUp", { duration: 300, distance: 24 })
 
 ### 4.8 1.2.0 桌面应用组件
 
-以下桌面组件在软件版本 `1.2.0` 中引入。组件目录的 `introducedIn` 与当前构建版本一致时，Gallery 导航显示绿色“新增”标签，总览集中列出这些组件；详情保留引入版本。当前 `1.3.2` 是修复版本，`1.2.0` 和 `1.3.0` 引入的组件不会显示当前版本的新增标记。
+以下桌面组件在软件版本 `1.2.0` 中引入。组件目录的 `introducedIn` 与当前构建版本一致时，Gallery 导航显示绿色“新增”标签，总览集中列出这些组件；详情保留引入版本。当前 `1.3.3` 是修复版本，`1.2.0` 和 `1.3.0` 引入的组件不会显示当前版本的新增标记。
 
 | 组件 | 用途 | 关键接口 |
 | --- | --- | --- |

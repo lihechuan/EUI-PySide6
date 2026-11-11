@@ -85,14 +85,16 @@ Control {
         Loader {
             id: titleSlot
 
-            active: sourceComponent !== null
+            visible: active
+            active: control.titleDelegate !== null
             sourceComponent: control.titleDelegate
         }
         Row {
             spacing: 4
 
             Loader {
-                active: sourceComponent !== null
+                visible: active
+                active: control.prefixDelegate !== null
                 sourceComponent: control.prefixDelegate
             }
             EText {
@@ -103,7 +105,8 @@ Control {
                     + (control.suffixDelegate ? "" : control.suffix)
             }
             Loader {
-                active: sourceComponent !== null
+                visible: active
+                active: control.suffixDelegate !== null
                 sourceComponent: control.suffixDelegate
             }
         }

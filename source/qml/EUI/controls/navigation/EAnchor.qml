@@ -24,7 +24,7 @@ Control {
     signal clicked(int index, var item)
 
     function updateCurrent() {
-        if (!scrollable || !items) {
+        if (!target || !target.contentItem || target.contentY === undefined || !items) {
             currentIndex = -1
             return
         }

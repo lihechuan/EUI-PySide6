@@ -14,15 +14,15 @@ EUI-PySide6 是使用 PySide6 的 Python Qt Quick / QML 桌面应用组件库，
 
 从 [GitHub Releases](https://github.com/lihechuan/EUI-PySide6/releases) 下载匹配系统和架构的安装包或免安装包。安装后启动 Gallery；免安装包需完整解压，保留其中的运行库和子目录。打包后的应用自带 Python 和 Qt，无需另行安装 Python 或 Qt SDK。
 
-[v1.3.2](https://github.com/lihechuan/EUI-PySide6/releases/tag/v1.3.2) 直接下载：
+[v1.3.3](https://github.com/lihechuan/EUI-PySide6/releases/tag/v1.3.3) 直接下载：
 
 | 系统 | 架构 | 安装包 | 免安装包 |
 | --- | --- | --- | --- |
-| Windows | x64 | [EXE](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.2/EUI-PySide6-Gallery-1.3.2-windows-x64-setup.exe) | [ZIP](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.2/EUI-PySide6-Gallery-1.3.2-windows-x64-portable.zip) |
-| macOS | Apple Silicon（arm64） | [DMG](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.2/EUI-PySide6-Gallery-1.3.2-macos-arm64.dmg) | [ZIP](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.2/EUI-PySide6-Gallery-1.3.2-macos-arm64-portable.zip) |
-| macOS | Intel（x64） | [DMG](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.2/EUI-PySide6-Gallery-1.3.2-macos-x64.dmg) | [ZIP](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.2/EUI-PySide6-Gallery-1.3.2-macos-x64-portable.zip) |
+| Windows | x64 | [EXE](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.3/EUI-PySide6-Gallery-1.3.3-windows-x64-setup.exe) | [ZIP](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.3/EUI-PySide6-Gallery-1.3.3-windows-x64-portable.zip) |
+| macOS | Apple Silicon（arm64） | [DMG](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.3/EUI-PySide6-Gallery-1.3.3-macos-arm64.dmg) | [ZIP](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.3/EUI-PySide6-Gallery-1.3.3-macos-arm64-portable.zip) |
+| macOS | Intel（x64） | [DMG](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.3/EUI-PySide6-Gallery-1.3.3-macos-x64.dmg) | [ZIP](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.3/EUI-PySide6-Gallery-1.3.3-macos-x64-portable.zip) |
 
-开发自己的应用可下载 [Python wheel](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.2/eui_pyside6-1.3.2-py3-none-any.whl)。下载后可对照 [SHA256SUMS.txt](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.2/SHA256SUMS.txt) 校验文件。本版本未提供 Windows x86 或 Linux 桌面安装包。
+开发自己的应用可下载 [Python wheel](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.3/eui_pyside6-1.3.3-py3-none-any.whl)。下载后可对照 [SHA256SUMS.txt](https://github.com/lihechuan/EUI-PySide6/releases/download/v1.3.3/SHA256SUMS.txt) 校验文件。本版本未提供 Windows x86 或 Linux 桌面安装包。
 
 搜索组件并操作示例，点击“显示源代码”或“复制源码”。示例下方的 API 说明组件的属性、方法和信号，可通过语言和主题控件切换显示效果。
 

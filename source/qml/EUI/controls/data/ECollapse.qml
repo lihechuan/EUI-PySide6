@@ -19,11 +19,11 @@ Control {
     signal changed(var names)
 
     function isExpanded(name) {
-        return EDataUtils.isArray(activeNames) && activeNames.indexOf(String(name)) >= 0
+        return Array.isArray(activeNames) && activeNames.indexOf(String(name)) >= 0
     }
 
     function setActiveNames(names) {
-        activeNames = EDataUtils.isArray(names) ? names.map(String)
+        activeNames = Array.isArray(names) ? names.map(String)
             : names === null || names === undefined ? []
             : [String(names)]
         normalizeActiveNames()
@@ -31,12 +31,12 @@ Control {
     }
 
     function applyToggle(key) {
-        const item = EDataUtils.isArray(model) ? model.find(function(entry, index) {
+        const item = Array.isArray(model) ? model.find(function(entry, index) {
             return entry && String(entry.name === undefined ? index : entry.name) === key
         }) : null
         if (!enabled || !item || item.disabled)
             return false
-        const names = EDataUtils.isArray(activeNames) ? activeNames : []
+        const names = Array.isArray(activeNames) ? activeNames : []
         activeNames = isExpanded(key) ? names.filter(function(value) {
             return value !== key
         })
@@ -46,10 +46,10 @@ Control {
     }
 
     function normalizeActiveNames() {
-        const names = EDataUtils.isArray(model) ? model.map(function(entry, index) {
+        const names = Array.isArray(model) ? model.map(function(entry, index) {
             return entry ? String(entry.name === undefined ? index : entry.name) : ""
         }) : []
-        const active = EDataUtils.isArray(activeNames) ? activeNames.filter(function(name, index, values) {
+        const active = Array.isArray(activeNames) ? activeNames.filter(function(name, index, values) {
             return names.indexOf(name) >= 0 && values.indexOf(name) === index
         }) : []
         const normalized = accordion ? active.slice(0, 1) : active
@@ -59,7 +59,7 @@ Control {
 
     function toggle(name) {
         const key = String(name)
-        const item = EDataUtils.isArray(model) ? model.find(function(entry, index) {
+        const item = Array.isArray(model) ? model.find(function(entry, index) {
             return entry && String(entry.name === undefined ? index : entry.name) === key
         }) : null
         if (!enabled || !item || item.disabled || pendingNames.indexOf(key) >= 0)
@@ -96,7 +96,7 @@ Control {
         id: panels
 
         Repeater {
-            model: EDataUtils.isArray(control.model) ? control.model : []
+            model: Array.isArray(control.model) ? control.model : []
 
             Column {
                 id: panel
@@ -145,9 +145,9 @@ Control {
                         property var entry: panel.entry
 
                         anchors.fill: parent
-                        active: sourceComponent !== null
                         anchors.leftMargin: control.expandIconPosition === "left" ? 40 : 16
                         sourceComponent: panel.entry.titleDelegate || control.titleDelegate
+                        active: (panel.entry.titleDelegate || control.titleDelegate) !== null
                         anchors.rightMargin: control.expandIconPosition === "right" ? 40 : 16
                     }
                     EIcon {
@@ -168,9 +168,9 @@ Control {
 
                         width: 16
                         height: 16
-                        active: sourceComponent !== null
                         anchors.verticalCenter: parent.verticalCenter
                         sourceComponent: panel.entry.iconDelegate || control.iconDelegate
+                        active: (panel.entry.iconDelegate || control.iconDelegate) !== null
                         x: control.expandIconPosition === "left" ? 16 : parent.width - width - 16
                     }
                 }
@@ -189,9 +189,9 @@ Control {
                     property var entry: panel.entry
 
                     width: parent.width
-                    visible: panel.expanded
-                    active: sourceComponent !== null
+                    visible: panel.expanded && active
                     sourceComponent: panel.entry.contentDelegate || control.contentDelegate
+                    active: (panel.entry.contentDelegate || control.contentDelegate) !== null
                 }
             }
         }

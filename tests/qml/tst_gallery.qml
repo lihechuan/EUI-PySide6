@@ -176,13 +176,14 @@ TestCase {
         ELocale.language = "en"
         const component = Qt.createComponent("../../example/qml/component/App.qml")
         compare(component.status, Component.Ready, component.errorString())
-        const window = component.createObject(null)
+        const window = createTemporaryObject(component, null)
         verify(window !== null, component.errorString())
         window.showComponent(exampleCatalog.find("EFormItem"))
         const loader = findChild(window, "galleryLoader")
         tryCompare(loader, "status", Loader.Ready)
         window.requestActivate()
         waitForRendering(window.contentItem)
+        GalleryUtils.loadExamples(testCase, loader.item)
         const item = findChild(loader.item, "galleryFormItem")
         const feedback = findChild(loader.item, "galleryFormFeedback")
         verify(item !== null)
@@ -201,7 +202,6 @@ TestCase {
         verify(feedback.width <= preview.width)
         verify(preview.height >= findChild(preview, "galleryPreviewContent").implicitHeight)
         window.close()
-        window.destroy()
     }
 
     function test_overviewFeaturedNavigation() {

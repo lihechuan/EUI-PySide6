@@ -1,6 +1,6 @@
 """EUI components for Python and Qt Quick."""
 
-__version__ = "1.3.2"
+__version__ = "1.3.3"
 
 from .runtime import initialize
 

@@ -36,7 +36,9 @@ Control {
     }
 
     function normalizeActive() {
-        active = Math.max(0, Math.min(count, active))
+        const normalized = Math.max(0, Math.min(count, active))
+        if (active !== normalized)
+            active = normalized
     }
 
     function select(index) {

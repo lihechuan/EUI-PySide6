@@ -26,6 +26,13 @@ def main():
     from eui import __version__, initialize
     from eui_gallery.src.bootstrap import install_gallery
 
+    if sys.platform == "win32":
+        import ctypes
+
+        set_app_id = ctypes.OleDLL("shell32").SetCurrentProcessExplicitAppUserModelID
+        set_app_id.argtypes = [ctypes.c_wchar_p]
+        set_app_id("EUI.PySide6.Gallery")
+
     QtWebEngineQuick.initialize()
     app = QGuiApplication(sys.argv[:1])
     app.setOrganizationName("EUI-PySide6")

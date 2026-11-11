@@ -12,7 +12,7 @@ Control {
     property Component dotDelegate: null
     property Component contentDelegate: null
 
-    readonly property var displayEvents: EDataUtils.isArray(model) ? (reverse ? model.slice().reverse() : model)
+    readonly property var displayEvents: Array.isArray(model) ? (reverse ? model.slice().reverse() : model)
         : []
 
     implicitWidth: 360
@@ -79,8 +79,8 @@ Control {
 
                     y: entry.dotY
                     x: entry.lineX - width / 2
-                    active: sourceComponent !== null
                     sourceComponent: entry.event.dotDelegate || control.dotDelegate
+                    active: (entry.event.dotDelegate || control.dotDelegate) !== null
                 }
                 Column {
                     id: eventColumn
@@ -111,9 +111,10 @@ Control {
 
                         property var event: entry.event
 
+                        visible: active
                         width: parent.width
-                        active: sourceComponent !== null
                         sourceComponent: entry.event.contentDelegate || control.contentDelegate
+                        active: (entry.event.contentDelegate || control.contentDelegate) !== null
                     }
                     EText {
                         font.pixelSize: 12

@@ -40,12 +40,6 @@ Item {
     function intersectsViewport() {
         if (!visible || width <= 0 || height <= 0)
             return false
-        if (viewport) {
-            const position = mapToItem(viewport, 0, 0)
-            if (!viewport.visible || position.x + width <= -margin || position.y + height <= -margin
-                || position.x >= viewport.width + margin || position.y >= viewport.height + margin)
-                return false
-        }
         let ancestor = control
         while (ancestor) {
             ancestor.x
@@ -62,6 +56,18 @@ Item {
                     return false
             }
             ancestor = ancestor.parent
+        }
+        if (viewport) {
+            let viewportAncestor = viewport
+            while (viewportAncestor) {
+                viewportAncestor.x
+                viewportAncestor.y
+                viewportAncestor = viewportAncestor.parent
+            }
+            const position = mapToItem(viewport, 0, 0)
+            if (!viewport.visible || position.x + width <= -margin || position.y + height <= -margin
+                || position.x >= viewport.width + margin || position.y >= viewport.height + margin)
+                return false
         }
         return true
     }

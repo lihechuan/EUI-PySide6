@@ -70,6 +70,7 @@ ListView {
     onCountChanged: Qt.callLater(checkLoad)
     onHeightChanged: Qt.callLater(checkLoad)
     onEnabledChanged: Qt.callLater(checkLoad)
+    onNearEndChanged: Qt.callLater(checkLoad)
     onVisibleChanged: Qt.callLater(checkLoad)
     onMovementStarted: internal.interacted = true
     Component.onCompleted: Qt.callLater(checkLoad)

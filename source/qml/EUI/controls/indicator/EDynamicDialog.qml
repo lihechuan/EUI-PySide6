@@ -20,22 +20,29 @@ EDialog {
         accept()
     }
 
-    function finish(accepted) {
-        if (state.finished)
-            return
-        state.finished = true
-        finished(resultData, accepted)
-        if (typeof callback === "function")
-            callback(resultData, accepted)
-    }
-
     function openComponent(source, properties) {
         if (!enabled || !source || typeof source.createObject !== "function" || source.status !== Component.Ready)
             return false
+        dialogState.updating = true
         parameters = properties || ({})
         component = source
         resultData = undefined
+        dialogState.updating = false
+        if (loadedContent)
+            loadedContent.create()
         return open()
+    }
+
+    function finish(accepted, completion) {
+        const pending = completion || dialogState.completion
+        if (pending.finished)
+            return
+        pending.finished = true
+        const value = pending.closed ? pending.result : resultData
+        const handler = pending.closed ? pending.callback : callback
+        finished(value, accepted)
+        if (typeof handler === "function")
+            handler(value, accepted)
     }
 
     showFooter: false
@@ -76,17 +83,30 @@ EDialog {
             function onParametersChanged() { content.create() }
 
             target: control
+            enabled: !dialogState.updating
         }
     }
 
-    onClosed: finish(false)
-    onAccepted: finish(true)
-    onRejected: finish(false)
-    onAboutToShow: state.finished = false
+    onAboutToShow: dialogState.completion = ({finished: false})
+    onAccepted: finish(true, visible ? dialogState.completion : dialogState.closing)
+    onRejected: finish(false, visible ? dialogState.completion : dialogState.closing)
+    onClosed: {
+        const completion = dialogState.closing
+        if (!completion.finished)
+            Qt.callLater(function() { if (control) control.finish(false, completion) })
+    }
+    onAboutToHide: {
+        dialogState.closing = dialogState.completion
+        dialogState.closing.closed = true
+        dialogState.closing.result = resultData
+        dialogState.closing.callback = callback
+    }
 
     QtObject {
-        id: state
+        id: dialogState
 
-        property bool finished: false
+        property var closing: null
+        property bool updating: false
+        property var completion: ({finished: false})
     }
 }

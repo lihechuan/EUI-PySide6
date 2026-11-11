@@ -51,6 +51,7 @@ Item {
             height: width
             radius: width / 2
             color: control.color
+            visible: scale > 0 && opacity > 0
             width: Math.sqrt(surface.width * surface.width + surface.height * surface.height) * 2
         }
     }

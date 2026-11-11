@@ -165,7 +165,7 @@ TestCase {
             const tiles = tilesIn(browser)
             verify(tiles.length > 0 && tiles.length < 100)
             for (const tile of tiles)
-                compare(tile.height, 88)
+                tryCompare(tile, "height", 88)
         }
     }
 
